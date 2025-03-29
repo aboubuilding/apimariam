@@ -29,9 +29,7 @@ class Caisse extends Model
 
         'libelle',
         'solde_initial',
-        'solde_final',
-        'date_ouverture',
-        'date_cloture',
+      
         'statut',
         'utilisateur_id',
         'annee_id',
@@ -49,9 +47,7 @@ class Caisse extends Model
 
      * @param  string $libelle
      * @param  int $solde_initial
-     * @param  int $solde_final
-     * @param  date $date_ouverture
-     * @param  date $date_cloture
+    
      * @param  int $statut
      * @param  int $utilisateur_id
      
@@ -67,9 +63,7 @@ class Caisse extends Model
     public static function addCaisse(
         $libelle,
         $solde_initial,
-        $solde_final,
-        $date_ouverture,
-        $date_cloture,
+      
         $statut,
         $utilisateur_id,
         $annee_id
@@ -82,9 +76,7 @@ class Caisse extends Model
 
         $caisse->libelle = $libelle;
         $caisse->solde_initial = $solde_initial;
-        $caisse->solde_final = $solde_final;
-        $caisse->date_ouverture = $date_ouverture;
-        $caisse->date_cloture = $date_cloture;
+       
         $caisse->statut = $statut;
         $caisse->utilisateur_id = $utilisateur_id;
         $caisse->annee_id = $annee_id;
@@ -114,9 +106,7 @@ class Caisse extends Model
 
      * @param  string $libelle
      * @param  int $solde_initial
-     * @param  int $solde_final
-     * @param  date $date_ouverture
-     * @param  date $date_cloture
+   
      * @param  int $statut
      * @param  int $utilisateur_id
     
@@ -131,9 +121,7 @@ class Caisse extends Model
     public static function updateCaisse(
         $libelle,
         $solde_initial,
-        $solde_final,
-        $date_ouverture,
-        $date_cloture,
+       
         $statut,
         $utilisateur_id,
         $annee_id,
@@ -148,9 +136,7 @@ class Caisse extends Model
 
             'libelle' => $libelle,
             'solde_initial' => $solde_initial,
-            'solde_final' => $solde_final,
-            'date_ouverture' => $date_ouverture,
-            'date_cloture' => $date_cloture,
+            
             'statut' => $statut,
             'utilisateur_id' => $utilisateur_id,
             
@@ -192,7 +178,7 @@ class Caisse extends Model
      * Retourne la liste des Caisses
      * @param  int $statut
      * @param  int $utilisateur_id
-     * @param  int $responsable_id
+   
      * @param  int $annee_id
 
 

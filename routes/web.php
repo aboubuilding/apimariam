@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+require base_path('routes/comptabilite.php');
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 // Les routes des interfaces de l admin
 
-Route::get('/', [App\Http\Controllers\Comptabilite\DashboardController::class, 'dashboard'])->name('comptabilite_dashboard');
+Route::get('/', [App\Http\Controllers\Comptabilite\TableauController::class, 'tableau'])->name('comptabilite_dashboard');
 
 
 

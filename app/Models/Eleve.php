@@ -31,28 +31,23 @@ class Eleve extends Model
         'nom',
         'prenom',
         'prenom_usuel',
-        'ecole_provenance',
-        'date_naissance',
-        'lieu_naissance',
+        'ecole_provenance_id',
+        'date_naissance_eleve',
+        'lieu_naissance_eleve',
         'sexe',
         'nationalite_id',
-        'espace_id',
-        'nom_medecin',
-        'personne_prevenir',
+        
         'photo',
         'carte_identite',
-        'naissance',
+        'naissance_eleve',
       
         'certificat_medical',
-        'vaccin_1',
-        'vaccin_2',
-        'vaccin_3',
-        'vaccin_4',
-        'vaccin_5',
+        'parent_id',
+        
+        'groupe_id',
         'numero_medecin',
-        'numero_personne_prevenir',
-        'lien_parente_personne',
-        'naissance_eleve',
+        'nom_medecin',
+     
         'allergie',
 
 
@@ -73,25 +68,19 @@ class Eleve extends Model
      * @param  string $prenom_usuel
      * @param  date $date_naissance
      * @param  string $lieu_naissance
-     * @param  string $sexe
+     * @param  int $sexe
      * @param  int $nationalite_id
-     * @param  int $espace_id
-     * @param  string $nom_medecin
-     * @param  string $personne_prevenir
+     * @param  int $ecole_provenance_id
      * @param  string $photo
-     * @param  string $groupe_id
-     * @param  string $certificat_medical
-     * @param  string $vaccin_1
-     * @param  string $vaccin_2
-     * @param  string $vaccin_3
-     * @param  string $vaccin_4
-     * @param  string $vaccin_5
-     *
-     * @param  string $numero_medecin
-     * @param  string $numero_personne_prevenir
-     * @param  int $lien_parente_personne
+     * @param  string $carte_identite
      * @param  string $naissance_eleve
+     * @param  int $parent_id
+     * @param  int $groupe_id
+     * @param  string $certificat_medical
+     * @param  string $nom_medecin
+     * @param  string $numero_medecin
      * @param  string $allergie
+   
 
 
 
@@ -106,30 +95,21 @@ class Eleve extends Model
         $nom,
         $prenom,
         $prenom_usuel,
-        $ecole_provenance,
         $date_naissance,
         $lieu_naissance,
         $sexe,
         $nationalite_id,
-        $espace_id,
-        $nom_medecin,
-        $personne_prevenir,
+        $ecole_provenance_id,
         $photo,
         $carte_identite,
-        $naissance,
+        $naissance_eleve,
+        $parent_id,
         $groupe_id,
         $certificat_medical,
-        $vaccin_1,
-        $vaccin_2,
-        $vaccin_3,
-        $vaccin_4,
-        $vaccin_5,
-
+        $nom_medecin,
         $numero_medecin,
-        $numero_personne_prevenir,
-        $lien_parente_personne,
-        $naissance_eleve,
         $allergie
+       
 
 
     )
@@ -141,29 +121,23 @@ class Eleve extends Model
         $eleve->nom = $nom;
         $eleve->prenom = $prenom;
         $eleve->prenom_usuel = $prenom_usuel;
-        $eleve->ecole_provenance = $ecole_provenance;
         $eleve->date_naissance = $date_naissance;
         $eleve->lieu_naissance = $lieu_naissance;
         $eleve->sexe = $sexe;
         $eleve->nationalite_id = $nationalite_id;
-        $eleve->espace_id = $espace_id;
-        $eleve->nom_medecin = $nom_medecin;
-        $eleve->personne_prevenir = $personne_prevenir;
+        $eleve->ecole_provenance_id = $ecole_provenance_id;
         $eleve->photo = $photo;
         $eleve->carte_identite = $carte_identite;
-        $eleve->naissance = $naissance;
+        $eleve->naissance_eleve = $naissance_eleve;
+        $eleve->parent_id = $parent_id;
+        $eleve->carte_identite = $carte_identite;
+        $eleve->naissance_eleve = $naissance_eleve;
         $eleve->groupe_id = $groupe_id;
         $eleve->certificat_medical = $certificat_medical;
-        $eleve->vaccin_1 = $vaccin_1;
-        $eleve->vaccin_2 = $vaccin_2;
-        $eleve->vaccin_3 = $vaccin_3;
-        $eleve->vaccin_4 = $vaccin_4;
-        $eleve->vaccin_5 = $vaccin_5;
+        $eleve->nom_medecin = $nom_medecin;
         $eleve->numero_medecin = $numero_medecin;
-        $eleve->numero_personne_prevenir = $numero_personne_prevenir;
-        $eleve->lien_parente_personne = $lien_parente_personne;
-        $eleve->naissance_eleve = $naissance_eleve;
         $eleve->allergie = $allergie;
+       
 
 
 
@@ -197,61 +171,42 @@ class Eleve extends Model
      * @param  string $prenom_usuel
      * @param  date $date_naissance
      * @param  string $lieu_naissance
-     * @param  string $sexe
+     * @param  int $sexe
      * @param  int $nationalite_id
-     * @param  int $espace_id
-     * @param  string $nom_medecin
-     * @param  string $personne_prevenir
+     * @param  int $ecole_provenance_id
      * @param  string $photo
      * @param  string $carte_identite
-     * @param  string $naissance
-     * @param  string $groupe_id
-     * @param  string $certificat_medical
-     * @param  string $vaccin_1
-     * @param  string $vaccin_2
-     * @param  string $vaccin_3
-     * @param  string $vaccin_4
-     * @param  string $vaccin_5
-     *
-     *
-     * @param  string $numero_medecin
-     * @param  string $numero_personne_prevenir
-     * @param  int $lien_parente_personne
      * @param  string $naissance_eleve
+     * @param  int $parent_id
+     * @param  int $groupe_id
+     * @param  string $certificat_medical
+     * @param  string $nom_medecin
+     * @param  string $numero_medecin
      * @param  string $allergie
+   
      *
  * @param int $id
      * @return  Eleve
      */
 
     public static function updateEleve(
-        $matricule,
+         $matricule,
         $nom,
         $prenom,
         $prenom_usuel,
-        $ecole_provenance,
         $date_naissance,
         $lieu_naissance,
         $sexe,
         $nationalite_id,
-        $espace_id,
-        $nom_medecin,
-        $personne_prevenir,
+        $ecole_provenance_id,
         $photo,
         $carte_identite,
-        $naissance,
+        $naissance_eleve,
+        $parent_id,
         $groupe_id,
         $certificat_medical,
-        $vaccin_1,
-        $vaccin_2,
-        $vaccin_3,
-        $vaccin_4,
-        $vaccin_5,
-
-         $numero_medecin,
-        $numero_personne_prevenir,
-        $lien_parente_personne,
-        $naissance_eleve,
+        $nom_medecin,
+        $numero_medecin,
         $allergie,
 
         $id)
@@ -266,31 +221,21 @@ class Eleve extends Model
             'nom' => $nom,
             'prenom' => $prenom,
             'prenom_usuel' => $prenom_usuel,
-            'ecole_provenance' => $ecole_provenance,
             'date_naissance' => $date_naissance,
             'lieu_naissance' => $lieu_naissance,
             'sexe' => $sexe,
             'nationalite_id' => $nationalite_id,
-            'espace_id' => $espace_id,
-            'nom_medecin' => $nom_medecin,
-            'personne_prevenir' => $personne_prevenir,
+            'ecole_provenance_id' => $ecole_provenance_id,
             'photo' => $photo,
             'carte_identite' => $carte_identite,
-            'naissance' => $naissance,
+            'naissance_eleve' => $naissance_eleve,
+            'parent_id' => $parent_id,
             'groupe_id' => $groupe_id,
             'certificat_medical' => $certificat_medical,
-            'vaccin_1' => $vaccin_1,
-            'vaccin_2' => $vaccin_2,
-            'vaccin_3' => $vaccin_3,
-            'vaccin_4' => $vaccin_4,
-            'vaccin_5' => $vaccin_5,
-
-
-             'numero_medecin' => $numero_medecin,
-            'numero_personne_prevenir' => $numero_personne_prevenir,
-            'lien_parente_personne' => $lien_parente_personne,
-            'naissance_eleve' => $naissance_eleve,
+            'nom_medecin' => $nom_medecin,
+            'numero_medecin' => $numero_medecin,
             'allergie' => $allergie,
+          
 
 
             'id' => $id,
@@ -329,10 +274,11 @@ class Eleve extends Model
      * Retourne la liste des eleves
      *
      *
-     * @param  int $espace_id
+     * @param  int $ecole_provenance_id
      * @param  int $groupe_id
      * @param  int $nationalite_id
      * @param  int $sexe
+     * @param  int $parent_id
 
      *
      * @return  array
@@ -343,7 +289,8 @@ class Eleve extends Model
         $espace_id = null,
         $groupe_id = null,
         $nationalite_id = null,
-        $sexe = null
+        $sexe = null,
+        $parent_id = null,
 
 
     ) {
@@ -351,9 +298,9 @@ class Eleve extends Model
         $query =  Eleve::where('etat', '!=', TypeStatus::SUPPRIME)
          ;
 
-        if ($espace_id != null) {
+        if ($ecole_provenance_id != null) {
 
-            $query->where('espace_id', '=', $espace_id);
+            $query->where('ecole_provenance_id', '=', $ecole_provenance_id);
         }
 
         if ($groupe_id != null) {
@@ -369,6 +316,12 @@ class Eleve extends Model
          if ($sexe != null) {
 
             $query->where('sexe', '=', $sexe);
+        }
+
+
+         if ($parent_id != null) {
+
+            $query->where('parent_id', '=', $parent_id);
         }
 
 
@@ -383,10 +336,11 @@ class Eleve extends Model
      * Retourne le nombre  des  années
 
 
-     * @param  int $espace_id
+     * @param  int $ecole_provenance_id
      * @param  int $groupe_id
      * @param  int $nationalite_id
      * @param  int $sexe
+     * @param  int $parent_id
 
 
      * @return  int $total
@@ -394,10 +348,11 @@ class Eleve extends Model
 
     public static function getTotal(
 
-       $espace_id = null,
+      $espace_id = null,
         $groupe_id = null,
         $nationalite_id = null,
-        $sexe = null
+        $sexe = null,
+        $parent_id = null,
 
 
     ) {
@@ -408,9 +363,9 @@ class Eleve extends Model
             ->where('eleves.etat', '!=', TypeStatus::SUPPRIME);
 
 
-            if ($espace_id != null) {
+          if ($ecole_provenance_id != null) {
 
-            $query->where('espace_id', '=', $espace_id);
+            $query->where('ecole_provenance_id', '=', $ecole_provenance_id);
         }
 
         if ($groupe_id != null) {
@@ -429,6 +384,12 @@ class Eleve extends Model
         }
 
 
+         if ($parent_id != null) {
+
+            $query->where('parent_id', '=', $parent_id);
+        }
+
+
         $total = $query->count();
 
         if ($total) {
@@ -440,10 +401,7 @@ class Eleve extends Model
     }
 
 
-    /**
-     * Obtenir un groupe
-     *
-     */
+   
 
     /**
      * Obtenir une nationalite
@@ -457,15 +415,17 @@ class Eleve extends Model
     }
 
 
-    /**
-     * Obtenir un espace
+
+
+ /**
+     * Obtenir une nationalite
      *
      */
-    public function espace()
+    public function ecoleprovenance()
     {
 
 
-        return $this->belongsTo(Espace::class, 'espace_id');
+        return $this->belongsTo(EcoleProvenance::class, 'ecole_provenance_id');
     }
 
 
@@ -483,53 +443,7 @@ class Eleve extends Model
     }
 
 
-    /**
-     * Mise a jour des données d identite  de l eleve
-     *
-     *
-
-     * @param  string $nom
-     * @param  string $prenom
-     * @param  date $date_naissance
-     * @param  string $lieu_naissance
-     * @param  string $sexe
-     * @param  int $nationalite_id
-     *
-     * @param int $id
-     * @return  Eleve
-     */
-
-    public static function modifierEleve(
-
-        $nom,
-        $prenom,
-        $date_naissance,
-        $lieu_naissance,
-        $sexe,
-        $nationalite_id,
-
-
-        $id)
-    {
-
-
-        return   $eleve = Eleve::findOrFail($id)->update([
-
-
-            'nom' => $nom,
-            'prenom' => $prenom,
-            'date_naissance' => $date_naissance,
-            'lieu_naissance' => $lieu_naissance,
-            'sexe' => $sexe,
-            'nationalite_id' => $nationalite_id,
-
-            'id' => $id,
-
-
-        ]);
-    }
-
-
+    
 
 
 

@@ -17,14 +17,12 @@ return new class extends Migration
             $table->id();
 
             $table->string('libelle')->nullable();
-            $table->float('prix_unitaire_achat')->nullable();
-            $table->float('prix_unitaire_vente')->nullable();
-            $table->float('prix_unitaire_stock')->nullable();
+
+            $table->float('prix_unitaire')->nullable();
             $table->string('photo')->nullable();
-            $table->string('unite')->nullable();
-            $table->string('unite_achat')->nullable();
-            $table->float('equivalence')->nullable();
-            $table->tinyInteger('type_produit')->nullable();
+            $table->bigInteger('type_produit_id')->nullable();
+
+
 
             $table->integer('etat')->default(1);
             $table->timestamps();

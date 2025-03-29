@@ -29,8 +29,8 @@ class Tranche extends Model
 
         'libelle',
         'date_butoire',
-        'frais_ecole_id',
-        'type_paiement_id',
+       
+        'type_service_id',
         'taux',
 
 
@@ -49,7 +49,7 @@ class Tranche extends Model
      * @param  date $libelle
      * @param  float $date_butoire
      * @param  int $frais_ecole_id
-     * @param  int $type_paiement_id
+     * @param  int $type_service_id
      * @param  int $taux
 
 
@@ -62,8 +62,8 @@ class Tranche extends Model
 
         $libelle,
         $date_butoire,
-        $frais_ecole_id,
-        $type_paiement_id,
+     
+        $type_service_id,
         $taux
 
 
@@ -76,8 +76,8 @@ class Tranche extends Model
 
         $tranche->libelle = $libelle;
         $tranche->date_butoire = $date_butoire;
-        $tranche->frais_ecole_id = $frais_ecole_id;
-        $tranche->type_paiement_id = $type_paiement_id;
+       
+        $tranche->type_service_id = $type_service_id;
         $tranche->taux = $taux;
 
 
@@ -106,8 +106,8 @@ class Tranche extends Model
 
      ** @param date $libelle
      * * @param float $date_butoire
-     * * @param int $frais_ecole_id
-     * * @param int $type_paiement_id
+    
+     * * @param int $type_service_id
      * * @param int $taux
 
      *
@@ -120,7 +120,7 @@ class Tranche extends Model
         $libelle,
         $date_butoire,
         $frais_ecole_id,
-        $type_paiement_id,
+        $type_service_id,
         $taux,
 
 
@@ -135,8 +135,8 @@ class Tranche extends Model
 
             'libelle' => $libelle,
             'date_butoire' => $date_butoire,
-            'frais_ecole_id' => $frais_ecole_id,
-            'type_paiement_id' => $type_paiement_id,
+      
+            'type_service_id' => $type_service_id,
             'taux' => $taux,
 
 
@@ -177,7 +177,7 @@ class Tranche extends Model
      * Retourne la liste des Tranches
 
 
-     * @param  int $frais_ecole_id
+     * @param  int $type_service_id
 
 
 
@@ -189,8 +189,8 @@ class Tranche extends Model
     public static function getListe(
 
 
-        $frais_ecole_id = null,
-        $type_paiement_id = null
+     
+        $type_service_id = null
 
 
     ) {
@@ -203,16 +203,12 @@ class Tranche extends Model
 
 
 
-        if ($frais_ecole_id != null) {
-
-            $query->where('frais_ecole_id', '=', $frais_ecole_id);
-        }
 
 
 
-          if ($type_paiement_id != null) {
+          if ($type_service_id != null) {
 
-            $query->where('type_paiement_id', '=', $type_paiement_id);
+            $query->where('type_service_id', '=', $type_service_id);
         }
 
 
@@ -228,7 +224,7 @@ class Tranche extends Model
      *
      *
 
-     * * @param int $frais_ecole_id
+     * * @param int $type_service_id
 
 
      *
@@ -238,7 +234,7 @@ class Tranche extends Model
 
     public static function getTotal(
 
-        $frais_ecole_id = null
+        $type_service_id = null
 
 
 
@@ -253,9 +249,9 @@ class Tranche extends Model
 
 
 
-        if ($frais_ecole_id != null) {
+        if ($type_service_id != null) {
 
-            $query->where('frais_ecole_id', '=', $frais_ecole_id);
+            $query->where('type_service_id', '=', $type_service_id);
         }
 
 
@@ -273,14 +269,14 @@ class Tranche extends Model
 
 
     /**
-     * Obtenir une année
+     * Obtenir un type de service 
      *
      */
-    public function fraisecole()
+    public function typeservice()
     {
 
 
-        return $this->belongsTo(\FraisEcole::class, 'frais_ecole_id');
+        return $this->belongsTo(\FraisEcole::class, 'type_service_id');
     }
 
 

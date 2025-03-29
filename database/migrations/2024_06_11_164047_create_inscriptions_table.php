@@ -25,27 +25,18 @@ return new class extends Migration
             $table->bigInteger('classe_id')->nullable();
             $table->bigInteger('espace_id')->nullable();
             $table->tinyInteger('type_inscription')->nullable();
-            $table->tinyInteger('statut_validation')->nullable();
+
+            $table->tinyInteger('statut')->nullable();
             $table->bigInteger('annee_id')->nullable();
-            $table->bigInteger('parent_id')->nullable();
-            $table->integer('taux_remise')->nullable();
 
-            //Validation
-            $table->text('motif_rejet')->nullable();
-            $table->dateTime('date_validation')->nullable();
-            $table->integer('utilisateur_id')->nullable();
 
-            
 
             $table->tinyInteger('programme_provenance')->nullable();
-           
-          
-            $table->float('frais_assurance')->nullable();
-            $table->float('frais_inscription')->nullable();
-          
-           
-            $table->float('frais_examen')->nullable();
 
+             // Adresse
+
+            $table->text('adresse_map')->nullable();
+            $table->bigInteger('quartier_id')->nullable();
 
 
             $table->integer('etat')->default(1);

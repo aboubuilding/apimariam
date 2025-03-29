@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
 
             $table->string('libelle')->nullable();
-            $table->text('emplacement')->nullable();
-            $table->integer('cycle_id')->nullable();
-            $table->integer('niveau_id')->nullable();
-            $table->integer('annee_id')->nullable();
+            $table->bigInteger('cycle_id')->nullable();
+            $table->bigInteger('niveau_id')->nullable();
+            $table->bigInteger('annee_id')->nullable();
+            $table->bigInteger('emplacement_id')->nullable();
 
             $table->integer('etat')->default(1);
 

@@ -31,18 +31,16 @@ class Paiement extends Model
 
         'reference',
         'payeur',
-        'motif_suppression',
+        'commentaire',
         'telephone_payeur',
         'date_paiement',
-      
         'statut_paiement',
         'mode_paiement',
         'inscription_id',
         'utilisateur_id',
         'cheque_id',
         'annee_id',
-
-
+        'type_journal_id',
         'etat',
 
     ];
@@ -59,7 +57,7 @@ class Paiement extends Model
 
      * @param  string $reference
      * @param  string $payeur
-     * @param  string $motif_suppression
+     * @param  string $commentaire
      * @param  string $telephone_payeur
      * @param  date $date_paiement
      * @param  int $statut_paiement
@@ -68,6 +66,7 @@ class Paiement extends Model
      * @param  int $utilisateur_id
      * @param  int $cheque_id
      * @param  int $annee_id
+     * @param  int $type_journal_id
 
 
 
@@ -80,7 +79,7 @@ class Paiement extends Model
     public static function addPaiement(
         $reference,
         $payeur,
-        $motif_suppression,
+        $commentaire,
         $telephone_payeur,
         $date_paiement,
         $statut_paiement,
@@ -88,7 +87,8 @@ class Paiement extends Model
         $inscription_id,
         $utilisateur_id,
         $cheque_id,
-        $annee_id
+        $annee_id,
+        $type_journal_id
 
     ) {
         $paiement = new Paiement();
@@ -96,7 +96,7 @@ class Paiement extends Model
 
         $paiement->reference = $reference;
         $paiement->payeur = $payeur;
-        $paiement->motif_suppression = $motif_suppression;
+        $paiement->commentaire = $commentaire;
         $paiement->telephone_payeur = $telephone_payeur;
         $paiement->date_paiement = $date_paiement;
         $paiement->statut_paiement = $statut_paiement;
@@ -105,6 +105,7 @@ class Paiement extends Model
         $paiement->utilisateur_id = $utilisateur_id;
         $paiement->cheque_id = $cheque_id;
         $paiement->annee_id = $annee_id;
+        $paiement->type_journal_id = $type_journal_id;
 
 
         $paiement->created_at = Carbon::now();
@@ -133,7 +134,7 @@ class Paiement extends Model
 
      * @param  string $reference
      * @param  string $payeur
-     * @param  string $motif_suppression
+     * @param  string $commentaire
      * @param  string $telephone_payeur
      * @param  date $date_paiement
      * @param  int $statut_paiement
@@ -142,6 +143,7 @@ class Paiement extends Model
      * @param  int $utilisateur_id
      * @param  int $cheque_id
      * @param  int $annee_id
+     * @param  int $type_journal_id
 
 
 
@@ -152,7 +154,7 @@ class Paiement extends Model
     public static function updatePaiement(
         $reference,
         $payeur,
-        $motif_suppression,
+        $commentaire,
         $telephone_payeur,
         $date_paiement,
         $statut_paiement,
@@ -161,6 +163,7 @@ class Paiement extends Model
         $utilisateur_id,
         $cheque_id,
         $annee_id,
+        $type_journal_id,
 
 
 
@@ -175,7 +178,7 @@ class Paiement extends Model
 
             'reference' => $reference,
             'payeur' => $payeur,
-            'motif_suppression' => $motif_suppression,
+            'commentaire' => $commentaire,
 
             'telephone_payeur' => $telephone_payeur,
             'date_paiement' => $date_paiement,
@@ -189,6 +192,7 @@ class Paiement extends Model
             'cheque_id' => $cheque_id,
 
             'annee_id' => $annee_id,
+            'type_journal_id' => $type_journal_id,
 
 
 
@@ -271,6 +275,20 @@ class Paiement extends Model
 
 
     /**
+     * Obtenir un type de journal 
+     *
+     */
+    public function typejournal()
+    {
+
+
+        return $this->belongsTo(TypeJournal::class, 'type_journal_id');
+    }
+
+
+
+
+    /**
      * Generer le  code de paiement
 
      * @return  string
@@ -306,6 +324,8 @@ class Paiement extends Model
      * @param  int $mode_paiement
 
      * @param  int $statut_paiement
+     * @param  int $type_journal_id
+   
 
 
 
@@ -319,6 +339,8 @@ class Paiement extends Model
 
         $mode_paiement = null,
         $statut_paiement = null,
+        $type_journal_id = null,
+     
 
         $date1 = null,
         $date2 = null
@@ -349,6 +371,11 @@ class Paiement extends Model
         if ($statut_paiement != null) {
 
             $query->where('paiements.statut_paiement', '=', $statut_paiement);
+        }
+
+         if ($type_journal_id != null) {
+
+            $query->where('paiements.type_journal_id', '=', $type_journal_id);
         }
 
 
@@ -388,6 +415,7 @@ class Paiement extends Model
      * @param  int $mode_paiement
 
      * @param  int $statut_paiement
+     * @param  int $type_journal_id
      * @param  date $date1
      * @param  date $date2
 
@@ -436,6 +464,12 @@ class Paiement extends Model
             $query->where('paiements.statut_paiement', '=', $statut_paiement);
         }
 
+
+         if ($type_journal_id != null) {
+
+            $query->where('paiements.type_journal_id', '=', $type_journal_id);
+        }
+
       
 
         if ($date1 != null && $date2 != null) {
@@ -469,69 +503,6 @@ class Paiement extends Model
 
 
 
-
-
-
-    /**
-     * Update d'une Budget scolaire
-
-     * @param  string $libelle
-     * @param  string $description
-     * @param  int $annee_id
-
-
-
-     * @param int $id
-     * @return  Budget
-     */
-
-    public static function supprimerPaiement(
-
-        $motif_suppression,
-
-
-        $id)
-    {
-
-
-   /*     DB::beginTransaction();
-
-        try {*/
-
-    $paiement = Paiement::findOrFail($id)->update([
-
-
-
-            'motif_suppression' => $motif_suppression,
-            'etat' => TypeStatus::SUPPRIME,
-
-            'id' => $id,
-
-
-        ]);
-
-        $details = Detail::getListe($id);
-
-
-        foreach ($details as $detail){
-
-            Detail::deleteDetail($detail->id);
-
-
-        }
-
-//            DB::commit();
-
-            // Retourner une réponse à l'utilisateur
-            return response()->json(['message' => 'Paiement  supprimée  avec succès'], 200);
-       /* } catch (\Exception $e) {
-            // En cas d'erreur, on annule la transaction
-            DB::rollBack();
-
-            // Retourner une réponse d'erreur
-            return response()->json(['message' => 'Erreur lors de la sauvegarde des données : ' . $e->getMessage()], 500);
-        }*/
-    }
 
 
 }

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('deductions', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('personnel_id')->nullable();
+            $table->bigInteger('employe_id')->nullable();
             $table->float('cnss')->nullable();
             $table->float('charges_familiale')->nullable();
             $table->float('forfait_professionnel')->nullable();

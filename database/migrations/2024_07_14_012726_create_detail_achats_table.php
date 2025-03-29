@@ -18,12 +18,12 @@ return new class extends Migration
 
 
 
+
+            $table->integer('quantite')->nullable();
+            $table->integer('prix_unitaire')->nullable();
             $table->bigInteger('achat_id')->nullable();
             $table->bigInteger('produit_id')->nullable();
-            $table->bigInteger('annee_id')->nullable();
-            $table->float('quantite')->nullable();
-            $table->float('prix_unitaire')->nullable();
-            $table->float('montant_achat')->nullable();
+
 
 
             $table->integer('etat')->default(1);

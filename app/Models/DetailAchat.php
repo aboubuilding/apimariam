@@ -29,10 +29,10 @@ class DetailAchat extends Model
 
         'achat_id',
         'produit_id',
-        'annee_id',
+      
         'quantite',
         'prix_unitaire',
-        'montant_achat',
+      
 
 
 
@@ -49,11 +49,10 @@ class DetailAchat extends Model
 
      * @param  int  $achat_id
      * @param  int $produit_id
-     * @param  int $annee_id
+   
      * @param  int $quantite
      * @param  int $prix_unitaire
-     * @param  int $montant_achat
-
+   
 
 
      * @return DetailAchat
@@ -62,10 +61,10 @@ class DetailAchat extends Model
     public static function addDetailAchat(
         $achat_id,
         $produit_id,
-        $annee_id,
+       
         $quantite,
-        $prix_unitaire,
-        $montant_achat
+        $prix_unitaire
+      
 
 
 
@@ -76,11 +75,10 @@ class DetailAchat extends Model
 
        $detailachat->achat_id = $achat_id;
        $detailachat->produit_id = $produit_id;
-       $detailachat->annee_id = $annee_id;
+     
        $detailachat->quantite = $quantite;
        $detailachat->prix_unitaire = $prix_unitaire;
-       $detailachat->montant_achat = $montant_achat;
-
+   
 
        $detailachat->created_at = Carbon::now();
 
@@ -106,10 +104,10 @@ class DetailAchat extends Model
 
       * @param  int  $achat_id
      * @param  int $produit_id
-     * @param  int $annee_id
+    
      * @param  int $quantite
      * @param  int $prix_unitaire
-     * @param  int $montant_achat
+    
 
 
 
@@ -120,10 +118,10 @@ class DetailAchat extends Model
     public static function updateDetailAchat(
         $achat_id,
         $produit_id,
-        $annee_id,
+      
         $quantite,
         $prix_unitaire,
-        $montant_achat,
+      
 
 
         $id)
@@ -136,10 +134,10 @@ class DetailAchat extends Model
 
             'achat_id' => $achat_id,
             'produit_id' => $produit_id,
-            'annee_id' => $annee_id,
+         
             'quantite' => $quantite,
             'prix_unitaire' => $prix_unitaire,
-            'montant_achat' => $montant_achat,
+           
 
 
 
@@ -178,7 +176,6 @@ class DetailAchat extends Model
     /**
      * Retourne la liste des DetailAchats
 
-     * @param  int $annee_id
      * @param  int $achat_id
      * @param  int $produit_id
 
@@ -191,7 +188,7 @@ class DetailAchat extends Model
 
     public static function getListe(
 
-        $annee_id = null,
+       
         $achat_id = null,
         $produit_id = null
 
@@ -204,11 +201,7 @@ class DetailAchat extends Model
         $query =  DetailAchat::where('etat', '!=', TypeStatus::SUPPRIME)
         ;
 
-        if ($annee_id != null) {
-
-            $query->where('annee_id', '=', $annee_id);
-        }
-
+       
 
 
 
@@ -236,7 +229,6 @@ class DetailAchat extends Model
      * Retourne le nombre  des  activités
 
 
-      * @param  int $annee_id
      * @param  int $bon_id
      * @param  int $produit_id
 
@@ -247,7 +239,7 @@ class DetailAchat extends Model
     public static function getTotal(
 
 
-        $annee_id = null,
+       
         $achat_id = null,
         $produit_id = null
 
@@ -261,11 +253,7 @@ class DetailAchat extends Model
             ->where('detail_bons.etat', '!=', TypeStatus::SUPPRIME);
 
 
-        if ($annee_id != null) {
-
-            $query->where('annee_id', '=', $annee_id);
-        }
-
+       
 
 
 
@@ -301,7 +289,7 @@ class DetailAchat extends Model
      * Retourne le nombre  des  activités
 
 
-      * @param  int $annee_id
+     
      * @param  int $achat_id
      * @param  int $produit_id
 
@@ -312,7 +300,7 @@ class DetailAchat extends Model
      public static function getMontantTotal(
 
 
-        $annee_id = null,
+       
         $achat_id = null,
         $produit_id = null
 
@@ -326,10 +314,7 @@ class DetailAchat extends Model
             ->where('detail_achats.etat', '!=', TypeStatus::SUPPRIME);
 
 
-        if ($annee_id != null) {
-
-            $query->where('annee_id', '=', $annee_id);
-        }
+       
 
 
 
@@ -360,17 +345,6 @@ class DetailAchat extends Model
 
 
 
-
-    /**
-     * Obtenir une année
-     *
-     */
-    public function annee()
-    {
-
-
-        return $this->belongsTo(Annee::class, 'annee_id');
-    }
 
 
 

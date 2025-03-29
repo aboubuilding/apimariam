@@ -18,7 +18,7 @@ return new class extends Migration
 
             $table->string('reference')->nullable();
             $table->string('payeur')->nullable();
-            $table->mediumText('motif_suppression')->nullable();
+            $table->mediumText('commentaire')->nullable();
             $table->string('telephone_payeur')->nullable();
             $table->date('date_paiement')->nullable();
             $table->tinyInteger('statut_paiement')->nullable();
@@ -27,6 +27,7 @@ return new class extends Migration
             $table->bigInteger('utilisateur_id')->nullable();
             $table->bigInteger('cheque_id')->nullable();
             $table->bigInteger('annee_id')->nullable();
+            $table->bigInteger('type_journal_id')->nullable();
 
 
             $table->integer('etat')->default(1);

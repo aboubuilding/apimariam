@@ -16,18 +16,16 @@ return new class extends Migration
         Schema::create('achats', function (Blueprint $table) {
             $table->id();
 
-            $table->date('date_achat')->nullable();
-            $table->date('date_livraison')->nullable();
-            $table->string('nom_acheteur')->nullable();
+
+
             $table->string('reference')->nullable();
-            $table->string('bon_commande')->nullable();
-            $table->mediumText('commentaire')->nullable();
-
+            $table->date('date_achat')->nullable();
+            $table->tinyInteger('statut')->nullable();
+            $table->bigInteger('annee_id')->nullable();
+            $table->string('nom_acheteur')->nullable();
             $table->bigInteger('fournisseur_id')->nullable();
+            $table->bigInteger('type_journal_id')->nullable();
 
-             $table->bigInteger('annee_id')->nullable();
-            $table->tinyInteger('statut_paiement')->nullable();
-            $table->tinyInteger('statut_livraison')->nullable();
 
 
             $table->integer('etat')->default(1);

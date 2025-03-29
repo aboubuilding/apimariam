@@ -28,7 +28,7 @@ class Classe extends Model
 
 
         'libelle',
-        'emplacement',
+        'emplacement_id',
         'cycle_id',
         'niveau_id',
         'annee_id',
@@ -45,7 +45,7 @@ class Classe extends Model
      *
 
      * @param  string $libelle
-     * @param  string $emplacement
+     * @param  int $emplacement_id
      * @param  int $cycle_id
      * @param  int $niveau_id
      * @param  int $annee_id
@@ -58,7 +58,7 @@ class Classe extends Model
 
     public static function addClasse(
         $libelle,
-        $emplacement,
+        $emplacement_id,
         $cycle_id,
         $niveau_id,
         $annee_id
@@ -70,7 +70,7 @@ class Classe extends Model
 
 
         $classe->libelle = $libelle;
-        $classe->emplacement = $emplacement;
+        $classe->emplacement_id = $emplacement_id;
         $classe->cycle_id = $cycle_id;
         $classe->niveau_id = $niveau_id;
         $classe->annee_id = $annee_id;
@@ -98,7 +98,7 @@ class Classe extends Model
      * Update d'une Classe scolaire
 
       * @param  string $libelle
-     * @param  string $emplacement
+     * @param  int $emplacement_id
      * @param  int $cycle_id
      * @param  int $niveau_id
      * @param  int $annee_id
@@ -110,7 +110,7 @@ class Classe extends Model
 
     public static function updateClasse(
         $libelle,
-        $emplacement,
+        $emplacement_id,
         $cycle_id,
         $niveau_id,
         $annee_id,
@@ -125,7 +125,7 @@ class Classe extends Model
 
 
             'libelle' => $libelle,
-            'emplacement' => $emplacement,
+            'emplacement_id' => $emplacement_id,
             'cycle_id' => $cycle_id,
             'niveau_id' => $niveau_id,
             'annee_id' => $annee_id,
@@ -169,6 +169,7 @@ class Classe extends Model
      * @param  int $cycle_id
      * @param  int $niveau_id
      * @param  int $annee_id
+    * @param  int $emplacement_id
  
 
 
@@ -180,7 +181,8 @@ class Classe extends Model
 
         $cycle_id = null,
         $niveau_id = null,
-        $annee_id = null
+        $annee_id = null,
+        $emplacement_id = null
       
         
 
@@ -207,6 +209,12 @@ class Classe extends Model
             $query->where('annee_id', '=', $annee_id);
         }
 
+
+         if ($emplacement_id != null) {
+
+            $query->where('emplacement_id', '=', $emplacement_id);
+        }
+
         
        
 
@@ -225,6 +233,7 @@ class Classe extends Model
     * @param  int $cycle_id
      * @param  int $niveau_id
      * @param  int $annee_id
+    * @param  int $emplacement_id
 
 
     
@@ -235,7 +244,8 @@ class Classe extends Model
     public static function getTotal(
           $cycle_id = null,
         $niveau_id = null,
-        $annee_id = null
+        $annee_id = null,
+        $emplacement_id = null
        
 
 
@@ -260,6 +270,12 @@ class Classe extends Model
          if ($annee_id != null) {
 
             $query->where('annee_id', '=', $annee_id);
+        }
+
+
+        if ($emplacement_id != null) {
+
+            $query->where('emplacement_id', '=', $emplacement_id);
         }
 
        
@@ -314,6 +330,20 @@ class Classe extends Model
 
         return $this->belongsTo(Cycle::class, 'cycle_id');
     }
+
+
+
+    /**
+     * Obtenir un emplacement
+     *
+     */
+    public function emplacement()
+    {
+
+
+        return $this->belongsTo(Emplacement::class, 'emplacement_id');
+    }
+
 
 
 

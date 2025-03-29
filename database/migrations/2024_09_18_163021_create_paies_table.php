@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('paies', function (Blueprint $table) {
             $table->id();
 
-            $table->bigInteger('personnel_id')->nullable();
+            $table->bigInteger('employe_id')->nullable();
             $table->bigInteger('periode_id')->nullable();
             $table->float('avantage_concede')->nullable();
             $table->float('prelevement_mensuel')->nullable();

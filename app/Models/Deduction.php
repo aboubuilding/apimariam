@@ -27,7 +27,7 @@ class Deduction extends Model
     protected $fillable = [
 
 
-        'personnel_id',
+        'employe_id',
         'cnss',
         'charges_familiale',
         'forfait_professionnel',
@@ -44,7 +44,7 @@ class Deduction extends Model
      * Ajouter une Deduction
      *
 
-     * @param  int $personnel_id
+     * @param  int $employe_id
      * @param  string $cnss
      * @param  int $charges_familiale
      * @param  int $forfait_professionnel
@@ -57,7 +57,7 @@ class Deduction extends Model
      */
 
     public static function addDeduction(
-        $personnel_id,
+        $employe_id,
         $cnss,
         $charges_familiale,
         $forfait_professionnel,
@@ -69,7 +69,7 @@ class Deduction extends Model
         $deduction = new Deduction();
 
 
-        $deduction->personnel_id = $personnel_id;
+        $deduction->employe_id = $employe_id;
         $deduction->cnss = $cnss;
         $deduction->charges_familiale = $charges_familiale;
         $deduction->forfait_professionnel = $forfait_professionnel;
@@ -99,7 +99,7 @@ class Deduction extends Model
 
 
 
-  * @param  int $personnel_id
+  * @param  int $employe_id
      * @param  string $cnss
      * @param  int $charges_familiale
      * @param  int $forfait_professionnel
@@ -112,7 +112,7 @@ class Deduction extends Model
      */
 
     public static function updateDeduction(
-         $personnel_id,
+         $employe_id,
         $cnss,
         $charges_familiale,
         $forfait_professionnel,
@@ -127,7 +127,7 @@ class Deduction extends Model
 
 
 
-            'personnel_id' => $personnel_id,
+            'employe_id' => $employe_id,
             'cnss' => $cnss,
             'charges_familiale' => $charges_familiale,
             'forfait_professionnel' => $forfait_professionnel,
@@ -169,7 +169,7 @@ class Deduction extends Model
     /**
      * Retourne la liste des Deductions
 
-     * @param  int $personnel_id
+     * @param  int $employe_id
      * @param  int $annee_id
    
 
@@ -312,7 +312,7 @@ class Deduction extends Model
     {
 
 
-        return $this->belongsTo(Employe::class, 'personnel_id');
+        return $this->belongsTo(Employe::class, 'employe_id');
     }
 
 

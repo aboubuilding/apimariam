@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Comptabilite;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Annee;
 
-
-use App\Types\StatutAnnee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -20,22 +18,20 @@ class AnneeController extends Controller
      */
     public function index()
     {
-        $data = [];
+        $data= [] ;
 
         $annees = Annee::getListe();
 
-        foreach ($annees as $annee) {
-            $data[]  = array(
+        foreach($annees as $annee ){
+            $data []  = array(
 
-                "id" => $annee->id,
+                "id"=>$annee->id,
+                "libelle"=> $annee->libelle == null ? ' ' : $annee->libelle,
+                "date_rentree"=> $annee->date_rentree == null ? ' ' : $annee->date_rentree,
+                "date_fin"=> $annee->date_fin == null ? ' ' : $annee->date_fin,
+                "statut_annee"=> $annee->statut_annee == null ? ' ' : $annee->statut_annee,
 
-                "libelle" => $annee->libelle == null ? ' ' :$annee->libelle,
 
-                "date_rentree" =>$annee->date_rentree == null ? ' ' : $annee->date_rentree,
-                 "date_fin" => $annee->date_fin == null ? ' ' :$annee->date_fin,
-
-
-                "statut_annee" =>$annee->statut_annee == null ? ' ' : $annee->statut_annee,
 
             );
         }
@@ -48,105 +44,112 @@ class AnneeController extends Controller
 
 
         );
+
+
     }
 
 
 
 
-    public function store(Request $request)
-    {
+    public function store(Request $request){
 
 
 
-        $validator = \Validator::make($request->all(), [
-            'libelle' => 'required|string|max:20|unique:annees',
+        $validator = \Validator::make($request->all(),[
+            'libelle'=>'required|string|max:25|unique:annees',
+            'date_rentree'=>'required',
+            'date_fin'=>'required',
 
 
-        ], [
-            'libelle.required' => 'Le libellé  est obligatoire ',
 
-            'libelle.string' => 'Le libellé  doit etre une chaine de caracteres ',
-            'libelle.unique' => 'Le libellé  existe déjà ',
-             'libelle.max' => 'Le libellé  ne peut pas depasser 20 caracteres  ',
+
+        ],[
+            'libelle.required'=>'Le libellé  est obligatoire ',
+            'libelle.string'=>'Le libellé  doit etre une chaine de caracteres ',
+
+            'libelle.max'=>'Le libellé  ne doit pas depasser 25 caracteres ',
+            'libelle.unique'=>'Le libellé  existe déjà ',
+             'date_rentree.required'=>'La date de rentrée   est obligatoire ',
+             'date_fin.required'=>'La date de fin    est obligatoire ',
+
 
 
 
         ]);
 
-        if (!$validator->passes()) {
-            return response()->json(['code' => 0, 'error' => $validator->errors()->toArray()]);
-        } else {
-            Annee::addAnnee(
-
-                $request->libelle,
-                $request->date_rentree,
-
-                $request->date_fin,
-                $request->date_ouverture_inscription,
-                $request->date_fermeture_reinscription,
-
-                StatutAnnee::NON_OUVERT,
+        if(!$validator->passes()){
+            return response()->json(['code'=>0,'error'=>$validator->errors()->toArray()]);
+        }else{
 
 
+                 Annee::addAnnee(
+
+                    $request->libelle,
+                    $request->date_rentree,
+                    $request->date_fin,
+
+                    $request->date_ouverture_inscription,
+                    $request->date_fermeture_reinscription,
+                    StatutAnnee::EN_COURS,
+
+                );
 
 
 
-            );
-
-            return response()->json(['code' => 1, 'msg' => 'Année ajoutée avec succès ']);
+                return response()->json(['code'=>1,'msg'=>'Année   ajoutée avec succès ']);
+            }
         }
-    }
 
 
 
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
 
 
-        $validator = \Validator::make($request->all(), [
+        $validator = \Validator::make($request->all(),[
 
-             'libelle' => 'required|string|unique:annees',
+            'libelle'=>'required|string|max:25|unique:annees,libelle,'.$id,
+              'date_rentree'=>'required',
+            'date_fin'=>'required',
 
 
+        ],[
+            'libelle.required'=>'Le libellé  est obligatoire ',
+            'libelle.string'=>'Le libellé  doit etre une chaine de caracteres ',
+            'libelle.unique'=>'Le libellé   existe déjà ',
 
-
-
-        ], [
-            'libelle.required' => 'Le libellé  est obligatoire ',
-            'libelle.string' => 'Le libellé  doit etre une chaine de caracteres ',
-            'libelle.unique' => 'Le libellé  existe déjà ',
-
+             'libelle.max'=>'Le libellé   ne doit pas depasser 25 caracteres  ',
+               'date_rentree.required'=>'La date de rentrée   est obligatoire ',
+             'date_fin.required'=>'La date de fin    est obligatoire ',
 
 
         ]);
 
-        if (!$validator->passes()) {
-            return response()->json(['code' => 0, 'error' => $validator->errors()->toArray()]);
-        } else {
+        if(!$validator->passes()){
+            return response()->json(['code'=>0,'error'=>$validator->errors()->toArray()]);
+        }else{
 
-            $annee = Annee::rechercheAnneeById($id);
+               $annee = Annee::rechercheAnneeById($id);
 
-                Annee::updateAnnee(
+               Annee::updateAnnee(
 
-                $request->libelle,
-                $request->date_rentree,
+                  $request->libelle,
+                    $request->date_rentree,
+                    $request->date_fin,
 
-                $request->date_fin,
-                $request->date_ouverture_inscription,
-                $request->date_fermeture_reinscription,
+                    $request->date_ouverture_inscription,
+                    $request->date_fermeture_reinscription,
+                      $annee->statut_annee,
 
-                    $annee->statut_annee,
-
-                $id
-
-
-            );
+                    $id
 
 
+                );
 
-            return response()->json(['code' => 1, 'msg' => 'Annee modifiée  avec succès ']);
+
+
+                return response()->json(['code'=>1,'msg'=>'Annee modifiée  avec succès ']);
+            }
         }
-    }
 
 
 
@@ -159,13 +162,15 @@ class AnneeController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function edit($id)
+    public function edit ($id)
     {
 
         $annee = Annee::rechercheAnneeById($id);
 
 
-        return response()->json(['code' => 1, 'annee' => $annee]);
+        return response()->json(['code'=>1, 'Annee'=>$Annee]);
+
+
     }
 
 
@@ -177,7 +182,7 @@ class AnneeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(Request $request, $id)
+    public function delete(Request $request,$id)
     {
 
 
@@ -201,4 +206,13 @@ class AnneeController extends Controller
             'message' => $message,
         ]);
     }
+
+
+
+
+
+
+
+
+
 }

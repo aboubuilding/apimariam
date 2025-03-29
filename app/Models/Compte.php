@@ -32,6 +32,7 @@ class Compte extends Model
         'statut_compte',
         'espace_id',
         'parent_id',
+        'password_reset',
        
 
         'etat',
@@ -49,6 +50,7 @@ class Compte extends Model
      * @param  int $statut_compte
      * @param  int $espace_id
      * @param  int $parent_id
+     * @param  int $password_reset
     
 
 
@@ -61,7 +63,8 @@ class Compte extends Model
         $mot_passe,
         $statut_compte,
         $espace_id,
-        $parent_id
+        $parent_id,
+        $password_reset
        
 
     )
@@ -74,6 +77,7 @@ class Compte extends Model
         $Compte->statut_compte = $statut_compte;
         $Compte->espace_id = $espace_id;
         $Compte->parent_id = $parent_id;
+        $Compte->password_reset = $password_reset;
        
         $Compte->created_at = Carbon::now();
 
@@ -101,7 +105,7 @@ class Compte extends Model
      * @param  string $mot_passe
      * @param  int $statut_compte
      * @param  int $espace_id
-     * @param  int $parent_id
+     * @param  int $password_reset
     
 
      * @param int $id
@@ -114,6 +118,7 @@ class Compte extends Model
         $statut_compte,
         $espace_id,
         $parent_id,
+        $password_reset,
        
        
         $id)
@@ -129,6 +134,7 @@ class Compte extends Model
             'statut_compte' => $statut_compte,
             'espace_id' => $espace_id,
             'parent_id' => $parent_id,
+            'password_reset' => $password_reset,
            
            
             'id' => $id,

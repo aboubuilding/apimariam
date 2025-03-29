@@ -20,10 +20,9 @@ return new class extends Migration
             $table->string('prenom_parent')->nullable();
             $table->string('telephone')->nullable();
             $table->string('profession')->nullable();
-            $table->integer('espace_id')->nullable();
+            $table->bigInteger('espace_id')->nullable();
             $table->tinyInteger('is_principal')->nullable();
             $table->tinyInteger('role')->nullable();
-            $table->integer('annee_id')->nullable();
             $table->integer('nationalite_id')->nullable();
             $table->string('whatsapp')->nullable();
 

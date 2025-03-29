@@ -26,16 +26,16 @@ class Vente extends Model
      */
     protected $fillable = [
 
-        'libelle',
+      
         'date_vente',
-        'quantite',
+        'statut',
         'annee_id',
-        'montant',
-        
-        'personnel_id',
-        'produit_id',
-        
         'boutique_id',
+        
+        'client_id',
+        'type_journal_id',
+        
+       
 
 
         'etat',
@@ -47,15 +47,15 @@ class Vente extends Model
     /**
      * Ajouter une Vente
      
-     * @param  string $libelle
+  
      * @param  date $date_vente
-     * @param  int $quantite
+     * @param  int $statut
      * @param  int $annee_id
-     * @param  float $montant
+     * @param  float $boutique_id
      
-     * @param  int $produit_id
-     * @param  int $personnel_id
-     * @param  int $boutique_id
+     * @param  int $type_journal_id
+     * @param  int $client_id
+   
 
 
 
@@ -64,15 +64,15 @@ class Vente extends Model
 
     public static function addVente (
 
-        $libelle,
+    
         $date_vente,
-        $quantite,
+        $statut,
         $annee_id,
-         $montant,
-        $personnel_id,
-        $produit_id,
+         $boutique_id,
+        $client_id,
+        $type_journal_id,
        
-        $boutique_id,
+      
 
 
         $id
@@ -82,15 +82,15 @@ class Vente extends Model
     {
         $vente = new Vente();
 
-        $vente->libelle = $libelle;
+      
         $vente->date_vente = $date_vente;
-        $vente->quantite = $quantite;
+        $vente->statut = $statut;
         $vente->annee_id = $annee_id;
-        $vente->montant = $montant;
-        $vente->personnel_id = $personnel_id;
-        $vente->produit_id = $produit_id;
-        
         $vente->boutique_id = $boutique_id;
+        $vente->client_id = $client_id;
+        $vente->type_journal_id = $type_journal_id;
+        
+     
 
 
 
@@ -118,50 +118,45 @@ class Vente extends Model
      *
      *
      *
-     @param  string $libelle
+   
      * @param  date $date_vente
-     * @param  int $quantite
+     * @param  int $statut
      * @param  int $annee_id
-     * @param  float $montant
+     * @param  float $boutique_id
      
-     * @param  int $produit_id
-     * @param  int $personnel_id
-     * @param  int $boutique_id
-     *
+     * @param  int $type_journal_id
+     * @param  int $client_id
+   
      * @param int $id
      * @return  Vente
      */
 
     public static function updateVente(
-         $libelle,
+        
         $date_vente,
-        $quantite,
+        $statut,
         $annee_id,
-         $montant,
-        $personnel_id,
-        $produit_id,
+         $boutique_id,
+        $client_id,
+        $type_journal_id,
        
-        $boutique_id,
-
-
-
-
+      
         $id)
     {
 
 
         return   $vente= Vente::findOrFail($id)->update([
 
-            'libelle' => $libelle,
+           
 
             'date_vente' => $date_vente,
-            'quantite' => $quantite,
+            'statut' => $statut,
             'annee_id' => $annee_id,
-            'montant' => $montant,
-            'personnel_id' => $personnel_id,
-            'produit_id' => $produit_id,
-            
             'boutique_id' => $boutique_id,
+            'client_id' => $client_id,
+            'type_journal_id' => $type_journal_id,
+            
+           
 
 
             'id' => $id,
@@ -201,10 +196,9 @@ class Vente extends Model
 
 
      * @param  int $annee_id
-     * @param  int $inscription_id
-     * @param  int $personnel_id
-     * @param  int $produit_id
-     * @param  int $detail_id
+     * @param  int $statut
+     * @param  int $client_id
+     * @param  int $type_journal_id
      * @param  int $boutique_id
 
 
@@ -216,16 +210,13 @@ class Vente extends Model
 
     public static function getListe(
 
-         $libelle,
-        $date_vente,
-        $quantite,
-        $annee_id,
-         $montant,
-        $personnel_id,
-        $produit_id,
        
-        $boutique_id,
-
+        $annee_id = null,
+        $statut = null,
+        $client_id = null,
+         $type_journal_id = null,
+        $boutique_id = null,
+      
 
 
 
@@ -246,29 +237,23 @@ class Vente extends Model
             $query->where('annee_id', '=', $annee_id);
         }
 
-        if ($inscription_id != null) {
 
-            $query->where('inscription_id', '=', $inscription_id);
+
+
+        if ($client_id != null) {
+
+            $query->where('client_id', '=', $client_id);
         }
 
 
-        if ($personnel_id != null) {
 
-            $query->where('personnel_id', '=', $personnel_id);
+        if ($type_journal_id != null) {
+
+            $query->where('type_journal_id', '=', $type_journal_id);
         }
 
 
-
-        if ($produit_id != null) {
-
-            $query->where('produit_id', '=', $produit_id);
-        }
-
-
-         if ($detail_id != null) {
-
-            $query->where('detail_id', '=', $detail_id);
-        }
+         
 
 
          if ($boutique_id != null) {
@@ -289,24 +274,21 @@ class Vente extends Model
  *
      *
 
-     * @param int $annee_id
-     * * @param int $inscription_id
-     * * @param int $personnel_id
-     * * @param int $produit_id
-     * * @param int $detail_id
-     * * @param int $boutique_id
- *
+     * @param  int $annee_id
+     * @param  int $statut
+     * @param  int $client_id
+     * @param  int $type_journal_id
+     * @param  int $boutique_id
      *
      * @return  int $total
      */
 
     public static function getTotal(
 
-        $annee_id = null,
-        $inscription_id = null,
-        $personnel_id = null,
-        $produit_id = null,
-        $detail_id = null,
+         $annee_id = null,
+        $statut = null,
+        $client_id = null,
+         $type_journal_id = null,
         $boutique_id = null
 
 
@@ -333,16 +315,16 @@ class Vente extends Model
         }
 
 
-        if ($personnel_id != null) {
+        if ($client_id != null) {
 
-            $query->where('personnel_id', '=', $personnel_id);
+            $query->where('client_id', '=', $client_id);
         }
 
 
 
-        if ($produit_id != null) {
+        if ($type_journal_id != null) {
 
-            $query->where('produit_id', '=', $produit_id);
+            $query->where('type_journal_id', '=', $type_journal_id);
         }
 
 
@@ -386,163 +368,45 @@ class Vente extends Model
 
 
 
-    /**
-     * Obtenir une année
-     *
-     */
-    public function inscription()
-    {
-
-
-        return $this->belongsTo(Inscription::class, 'inscription_id');
-    }
-
 
 
     /**
-     * Obtenir une année
+     * Obtenir une client 
      *
      */
-    public function personnel()
+    public function client()
     {
 
 
-        return $this->belongsTo(personnel::class, 'personnel_id');
+        return $this->belongsTo(Client::class, 'client_id');
     }
 
 
 
      /**
-     * Obtenir un user  
+     * Obtenir un typejournal 
+     *
+     */
+    public function typejournal()
+    {
+
+
+        return $this->belongsTo(TypeJournal::class, 'type_journal_id');
+    }
+
+
+
+
+
+    /**
+     * Obtenir une boutique 
      *
      */
     public function boutique()
     {
 
 
-        return $this->belongsTo(User::class, 'boutique_id');
-    }
-
-
-
-
-
-    /**
-     * Obtenir un produit
-     *
-     */
-    public function produit()
-    {
-
-
-        return $this->belongsTo(Produit::class, 'produit_id');
-    }
-
-
-
-
-
-    /**
-     * Retourne la quantite
-     *
-     *
-
-     * @param int $annee_id
-     * * @param int $inscription_id
-     * * @param int $personnel_id
-     * * @param int $produit_id
-     *
-     *
-     * @return  int $total
-     */
-
-    public static function getQuantiteProduit(
-
-        $annee_id = null,
-        $inscription_id = null,
-        $personnel_id = null,
-        $produit_id = null
-
-
-
-
-    ) {
-
-
-
-
-        $total = 0;
-        $ventes  = Vente::getListe(
-            $annee_id, $inscription_id, $personnel_id, $produit_id
-        );
-
-
-        foreach ($ventes as $vente ){
-
-            $total += $vente->quantite;
-
-        }
-
-        if ($total) {
-
-            return   $total;
-        }
-
-        return 0;
-    }
-
-
-
-
-
-
-    /**
-     * Retourne la quantite
-     *
-     *
-
-     * @param int $annee_id
-     * * @param int $inscription_id
-     * * @param int $personnel_id
-     * * @param int $produit_id
-     *
-     *
-     * @return  int $total
-     */
-
-    public static function getMontantProduit(
-
-        $annee_id = null,
-        $inscription_id = null,
-        $personnel_id = null,
-        $produit_id = null
-
-
-
-
-    ) {
-
-
-
-
-        $total = 0;
-        $ventes  = Vente::getListe(
-            $annee_id, $inscription_id, $personnel_id, $produit_id
-        );
-
-
-        foreach ($ventes as $vente ){
-
-            $total += $vente->quantite*$vente->produit->prix;
-
-        }
-
-        if ($total) {
-
-            return   $total;
-        }
-
-        return 0;
+        return $this->belongsTo(Boutique::class, 'boutique_id');
     }
 
 

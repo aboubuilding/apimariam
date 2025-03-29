@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Comptabilite;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Niveau;
 
-
-use App\Types\StatutNiveau;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -20,13 +18,24 @@ class NiveauController extends Controller
      */
     public function index()
     {
-        $data = [];
+        $data= [] ;
 
-        $niveaux = Niveau::getListe();
+        $niveaus = Niveau::getListe();
 
-       
+        foreach($niveaus as $niveau ){
+            $data []  = array(
 
-        return view('comptabilite.pageNiveau')->with(
+                "id"=>$niveau->id,
+                "libelle"=> $niveau->libelle == null ? ' ' : $niveau->libelle,
+                "cycle"=> $niveau->cycle_id == null ? ' ' : $niveau->cycle->libelle,
+                "numero_ordre"=> $niveau->numero_ordre == null ? ' ' : $niveau->numero_ordre,
+               
+
+
+            );
+        }
+
+        return view('admin.niveauindex')->with(
             [
                 'data' => $data,
 
@@ -34,106 +43,110 @@ class NiveauController extends Controller
 
 
         );
+
+
     }
 
 
 
 
-    public function store(Request $request)
-    {
+    public function store(Request $request){
 
 
 
-        $validator = \Validator::make($request->all(), [
-            'libelle' => 'required|string|max:20|unique:Niveaus',
-            'cycle_id' => 'required|string|max:20|unique:Niveaus',
+        $validator = \Validator::make($request->all(),[
+            'libelle'=>'required|string|max:25|unique:niveaux',
+            'cycle_id'=>'required',
+           
 
 
-        ], [
-            'libelle.required' => 'Le libellé  est obligatoire ',
 
-            'libelle.string' => 'Le libellé  doit etre une chaine de caracteres ',
-            'libelle.unique' => 'Le libellé  existe déjà ',
-             'libelle.max' => 'Le libellé  ne peut pas depasser 20 caracteres  ',
+
+        ],[
+            'libelle.required'=>'Le libellé  est obligatoire ',
+            'libelle.string'=>'Le libellé  doit etre une chaine de caracteres ',
+
+            'libelle.max'=>'Le libellé  ne doit pas depasser 25 caracteres ',
+            'libelle.unique'=>'Le libellé  existe déjà ',
+            'cycle_id.required'=>'Le cycle   existe déjà ',
+           
+
 
 
 
         ]);
 
-        if (!$validator->passes()) {
-            return response()->json(['code' => 0, 'error' => $validator->errors()->toArray()]);
-        } else {
-            Niveau::addNiveau(
-
-                $request->libelle,
-                $request->date_rentree,
-
-                $request->date_fin,
-                $request->date_ouverture_inscription,
-                $request->date_fermeture_reinscription,
-
-                StatutNiveau::NON_OUVERT,
+        if(!$validator->passes()){
+            return response()->json(['code'=>0,'error'=>$validator->errors()->toArray()]);
+        }else{
 
 
+                 Niveau::addNiveau(
+
+                    $request->libelle,
+                    $request->description,
+                    $request->numero_ordre,
+
+                    $request->cycle_id,
+                  
+                
+
+                );
 
 
 
-            );
-
-            return response()->json(['code' => 1, 'msg' => 'Année ajoutée avec succès ']);
+                return response()->json(['code'=>1,'msg'=>'Niveau    ajoutée avec succès ']);
+            }
         }
-    }
 
 
 
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
 
 
-        $validator = \Validator::make($request->all(), [
+        $validator = \Validator::make($request->all(),[
 
-             'libelle' => 'required|string|unique:Niveaus',
+            'libelle'=>'required|string|max:25|unique:niveaux,libelle,'.$id,
+             
 
+        ],[
+            'libelle.required'=>'Le libellé  est obligatoire ',
+            'libelle.string'=>'Le libellé  doit etre une chaine de caracteres ',
+            'libelle.unique'=>'Le libellé   existe déjà ',
 
+             'libelle.max'=>'Le libellé   ne doit pas depasser 25 caracteres  ',
 
-
-
-        ], [
-            'libelle.required' => 'Le libellé  est obligatoire ',
-            'libelle.string' => 'Le libellé  doit etre une chaine de caracteres ',
-            'libelle.unique' => 'Le libellé  existe déjà ',
-
+              'cycle_id.required'=>'Le cycle   existe déjà ',
+              
 
 
         ]);
 
-        if (!$validator->passes()) {
-            return response()->json(['code' => 0, 'error' => $validator->errors()->toArray()]);
-        } else {
+        if(!$validator->passes()){
+            return response()->json(['code'=>0,'error'=>$validator->errors()->toArray()]);
+        }else{
 
-            $Niveau = Niveau::rechercheNiveauById($id);
+               $niveau = Niveau::rechercheNiveauById($id);
 
-                Niveau::updateNiveau(
+               Niveau::updateNiveau(
 
-                $request->libelle,
-                $request->date_rentree,
+                 
+                     $request->libelle,
+                    $request->description,
+                    $request->numero_ordre,
 
-                $request->date_fin,
-                $request->date_ouverture_inscription,
-                $request->date_fermeture_reinscription,
+                    $request->cycle_id,
 
-                    $Niveau->statut_Niveau,
-
-                $id
+                    $id
 
 
-            );
+                );
 
 
 
-            return response()->json(['code' => 1, 'msg' => 'Niveau modifiée  avec succès ']);
+                return response()->json(['code'=>1,'msg'=>'Niveau modifiée  avec succès ']);
+            }
         }
-    }
 
 
 
@@ -146,13 +159,15 @@ class NiveauController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function edit($id)
+    public function edit ($id)
     {
 
-        $Niveau = Niveau::rechercheNiveauById($id);
+        $niveau = Niveau::rechercheNiveauById($id);
 
 
-        return response()->json(['code' => 1, 'Niveau' => $Niveau]);
+        return response()->json(['code'=>1, 'Niveau'=>$niveau]);
+
+
     }
 
 
@@ -164,7 +179,7 @@ class NiveauController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(Request $request, $id)
+    public function delete(Request $request,$id)
     {
 
 
@@ -188,4 +203,13 @@ class NiveauController extends Controller
             'message' => $message,
         ]);
     }
+
+
+
+
+
+
+
+
+
 }

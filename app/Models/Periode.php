@@ -42,13 +42,12 @@ class Periode extends Model
      * Ajouter une Periode
      *
 
-     * @param  int $libelle
-     * @param  int $inscription_id
+     * @param  string  $libelle
+     * @param  date $date_debut
+     * @param  date  $date_fin
      * @param  int $annee_id
-     * @param  date $date_Periode
-     * @param  date $date_retour_Periode
-     * @param  date $date_retour_reel
-     * @param  int $statut_Periode
+     * @param  int $statut
+  
 
 
 
@@ -57,33 +56,30 @@ class Periode extends Model
 
     public static function addPeriode(
         $libelle,
-        $inscription_id,
+        $date_debut,
+        $date_fin,
         $annee_id,
-        $date_Periode,
-        $date_retour_Periode,
-        $date_retour_reel,
-        $statut_Periode
+        $statut
+      
 
 
     )
     {
-        $Periode = new Periode();
+        $periode = new Periode();
 
 
-        $Periode->libelle = $libelle;
-        $Periode->inscription_id = $inscription_id;
-        $Periode->annee_id = $annee_id;
-        $Periode->date_Periode = $date_Periode;
-        $Periode->date_retour_Periode = $date_retour_Periode;
-        $Periode->date_retour_reel = $date_retour_reel;
-        $Periode->statut_Periode = $statut_Periode;
+        $periode->libelle = $libelle;
+        $periode->date_debut = $date_debut;
+        $periode->date_fin = $date_fin;
+        $periode->annee_id = $annee_id;
+      
 
 
-        $Periode->created_at = Carbon::now();
+        $periode->created_at = Carbon::now();
 
-        $Periode->save();
+        $periode->save();
 
-        return $Periode;
+        return $periode;
     }
 
     /**
@@ -95,20 +91,17 @@ class Periode extends Model
     public static function recherchePeriodeById($id)
     {
 
-        return   $Periode = Periode::findOrFail($id);
+        return   $periode = Periode::findOrFail($id);
     }
 
     /**
      * Update d'une Periode scolaire
 
-    * @param  int $libelle
-     * @param  int $inscription_id
+    * @param  string  $libelle
+     * @param  date $date_debut
+     * @param  date  $date_fin
      * @param  int $annee_id
-     * @param  date $date_Periode
-     * @param  date $date_retour_Periode
-     * @param  date $date_retour_reel
-     * @param  int $statut_Periode
-
+     * @param  int $statut
 
 
 
@@ -117,29 +110,26 @@ class Periode extends Model
      */
 
     public static function updatePeriode(
-        $libelle,
-        $inscription_id,
+         $libelle,
+        $date_debut,
+        $date_fin,
         $annee_id,
-        $date_Periode,
-        $date_retour_Periode,
-        $date_retour_reel,
-        $statut_Periode,
+        $statut,
 
         $id)
     {
 
 
-        return   $Periode = Periode::findOrFail($id)->update([
+        return   $periode = Periode::findOrFail($id)->update([
 
 
 
             'libelle' => $libelle,
-            'inscription_id' => $inscription_id,
+            'date_debut' => $date_debut,
+            'date_fin' => $date_fin,
             'annee_id' => $annee_id,
-            'date_Periode' => $date_Periode,
-            'date_retour_Periode' => $date_retour_Periode,
-            'date_retour_reel' => $date_retour_reel,
-            'statut_Periode' => $statut_Periode,
+            'statut' => $statut,
+           
 
             'id' => $id,
 
@@ -160,12 +150,12 @@ class Periode extends Model
     public static function deletePeriode($id)
     {
 
-        $Periode = Periode::findOrFail($id)->update([
+        $periode = Periode::findOrFail($id)->update([
             'etat' => TypeStatus::SUPPRIME
 
         ]);
 
-        if ($Periode) {
+        if ($periode) {
             return 1;
         }
         return 0;
@@ -175,8 +165,8 @@ class Periode extends Model
 
     /**
      * Retourne la liste des Periodes
-     * @param  int $libelle
-     * @param  int $inscription_id
+   
+    
      * @param  int $annee_id
 
      *
@@ -185,9 +175,7 @@ class Periode extends Model
 
     public static function getListe(
 
-        $libelle = null,
-
-        $inscription_id = null,
+       
         $annee_id = null
 
     ) {
@@ -197,16 +185,7 @@ class Periode extends Model
         $query =  Periode::where('etat', '!=', TypeStatus::SUPPRIME)
         ;
 
-        if ($libelle != null) {
-
-            $query->where('libelle', '=', $libelle);
-        }
-
-        if ($inscription_id != null) {
-
-            $query->where('inscription_id', '=', $inscription_id);
-        }
-
+       
 
         if ($annee_id != null) {
 
@@ -225,17 +204,13 @@ class Periode extends Model
      * Retourne le nombre  des  activités
 
 
-    * @param  int $libelle
-     * @param  int $inscription_id
      * @param  int $annee_id
 
      * @return  int $total
      */
 
     public static function getTotal(
-        $libelle = null,
-
-        $inscription_id = null,
+        
         $annee_id = null
 
 
@@ -249,15 +224,7 @@ class Periode extends Model
             ->where('Periodes.etat', '!=', TypeStatus::SUPPRIME);
 
 
-            if ($libelle != null) {
-
-                $query->where('libelle', '=', $libelle);
-            }
-
-            if ($inscription_id != null) {
-
-                $query->where('inscription_id', '=', $inscription_id);
-            }
+           
 
 
             if ($annee_id != null) {
@@ -290,28 +257,7 @@ class Periode extends Model
     }
 
 
-    /**
-     * Obtenir une periode
-     *
-     */
-    public function inscription()
-    {
-
-
-        return $this->belongsTo(Inscription::class, 'inscription_id');
-    }
-
-
-      /**
-     * Obtenir un employe
-     *
-     */
-    public function livre()
-    {
-
-
-        return $this->belongsTo(Livre::class, 'libelle');
-    }
+    
 
 
 }

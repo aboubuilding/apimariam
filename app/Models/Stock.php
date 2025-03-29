@@ -29,10 +29,10 @@ class Stock extends Model
         'date_stock',
         'produit_id',
         'magasin_id',
-        'bon_id',
+        'date_stock',
         'annee_id',
         'quantite',
-        'type_mouvement',
+        'prix_unitaire',
 
 
 
@@ -46,35 +46,35 @@ class Stock extends Model
 /**
  * Ajouter un Stock
  *
- * @param  int $bon_id
+ * @param  date $date_stock
  * @param  int $produit_id
  * @param  int $magasin_id
  * @param  int|null $boutique_id
  * @param  int $annee_id
  * @param  float $quantite
- * @param  int $type_mouvement
+ * @param  int $prix_unitaire
  * @return Stock
  */
 public static function addStock(
-    $bon_id,
+    $date_stock,
     $produit_id,
     $magasin_id,
     $boutique_id = null,
     $annee_id,
     $quantite,
-    $type_mouvement
+    $prix_unitaire
 ) {
     $stock = new Stock();
 
-    $stock->date_stock = Carbon::now(); 
-    $stock->bon_id = $bon_id;
+    $stock->date_stock = $date_stock; 
+  
     $stock->produit_id = $produit_id;
     $stock->magasin_id = $magasin_id;
     $stock->boutique_id = $boutique_id;
     $stock->annee_id = $annee_id;
     $stock->quantite = $quantite;
-    $stock->type_mouvement = $type_mouvement;
-    $stock->etat = 1; 
+    $stock->prix_unitaire = $prix_unitaire;
+  
     $stock->save();
 
     return $stock;
@@ -96,38 +96,38 @@ public static function rechercheStockById($id)
  * Mise à jour d'un Stock
  *
  * @param int $id
- * @param int $bon_id
+ * @param int $date_stock
  * @param int $produit_id
  * @param int $magasin_id
- * @param int|null $boutique_id
+ * @param int null $boutique_id
  * @param int $annee_id
  * @param float $quantite
- * @param int $type_mouvement
- * @param int $etat
+ * @param int $prix_unitaire
+ 
  * @return Stock
  */
 public static function updateStock(
     $id,
-    $bon_id,
+    $date_stock,
     $produit_id,
     $magasin_id,
     $boutique_id = null,
     $annee_id,
     $quantite,
-    $type_mouvement,
-    $etat = 1
+    $prix_unitaire,
+  
 ) {
     $stock = Stock::findOrFail($id);
 
     $stock->update([
-        'bon_id' => $bon_id,
+        'date_stock' => $date_stock,
         'produit_id' => $produit_id,
         'magasin_id' => $magasin_id,
         'boutique_id' => $boutique_id,
         'annee_id' => $annee_id,
         'quantite' => $quantite,
-        'type_mouvement' => $type_mouvement,
-        'etat' => $etat,
+        'prix_unitaire' => $prix_unitaire,
+       
     ]);
 
     return $stock;
@@ -161,23 +161,21 @@ public static function updateStock(
    /**
  * Retourne la liste des Stocks
  *
- * @param int|null $annee_id
- * @param int|null $type_mouvement
- * @param int|null $bon_id
- * @param int|null $magasin_id
- * @param int|null $produit_id
- * @param int|null $boutique_id
- * @param int $etat
+ * @param int null $annee_id
+ 
+ * @param int null $magasin_id
+ * @param int null $produit_id
+ * @param int null $boutique_id
+ 
  * @return \Illuminate\Database\Eloquent\Collection
  */
 public static function getListe(
     $annee_id = null,
-    $type_mouvement = null,
-    $bon_id = null,
+  
     $magasin_id = null,
     $produit_id = null,
     $boutique_id = null,
-    $etat = 1
+   
 ) {
     $query = Stock::where('etat', '!=', TypeStatus::SUPPRIME);
 
@@ -185,13 +183,7 @@ public static function getListe(
         $query->where('annee_id', $annee_id);
     }
 
-    if (!is_null($type_mouvement)) {
-        $query->where('type_mouvement', $type_mouvement);
-    }
-
-    if (!is_null($bon_id)) {
-        $query->where('bon_id', $bon_id);
-    }
+    
 
     if (!is_null($produit_id)) {
         $query->where('produit_id', $produit_id);
@@ -205,9 +197,7 @@ public static function getListe(
         $query->where('boutique_id', $boutique_id);
     }
 
-    if (!is_null($etat)) {
-        $query->where('etat', $etat);
-    }
+  
 
     return $query->get();
 }
@@ -216,8 +206,7 @@ public static function getListe(
  * Retourne le nombre total des activités en stock.
  *
  * @param int|null $annee_id
- * @param int|null $type_mouvement
- * @param int|null $bon_id
+
  * @param int|null $magasin_id
  * @param int|null $produit_id
  * @param int|null $boutique_id
@@ -226,12 +215,11 @@ public static function getListe(
  */
 public static function getTotal(
     $annee_id = null,
-    $type_mouvement = null,
-    $bon_id = null,
+    
     $magasin_id = null,
     $produit_id = null,
     $boutique_id = null,
-    $etat = 1
+  
 ) {
     $query = DB::table('stocks')->where('etat', '!=', TypeStatus::SUPPRIME);
 
@@ -239,13 +227,7 @@ public static function getTotal(
         $query->where('annee_id', $annee_id);
     }
 
-    if (!is_null($type_mouvement)) {
-        $query->where('type_mouvement', $type_mouvement);
-    }
-
-    if (!is_null($bon_id)) {
-        $query->where('bon_id', $bon_id);
-    }
+    
 
     if (!is_null($produit_id)) {
         $query->where('produit_id', $produit_id);
@@ -259,9 +241,7 @@ public static function getTotal(
         $query->where('boutique_id', $boutique_id);
     }
 
-    if (!is_null($etat)) {
-        $query->where('etat', $etat);
-    }
+    
 
     return $query->count();
 }
@@ -279,18 +259,6 @@ public static function getTotal(
 
 
 
-
-
-     /**
-     * Obtenir un bon
-     *
-     */
-    public function bon()
-    {
-
-
-        return $this->belongsTo(Bon::class, 'bon_id');
-    }
 
 
 

@@ -16,32 +16,34 @@ return new class extends Migration
         Schema::create('eleves', function (Blueprint $table) {
             $table->id();
 
+              //infos eleves
+
             $table->string('matricule')->nullable();
             $table->string('nom')->nullable();
             $table->string('prenom')->nullable();
             $table->string('prenom_usuel')->nullable();
-            $table->string('ecole_provenance')->nullable();
+
             $table->date('date_naissance')->nullable();
             $table->string('lieu_naissance')->nullable();
             $table->tinyInteger('sexe')->nullable();
-            $table->integer('nationalite_id')->nullable();
-            $table->integer('espace_id')->nullable();
-            $table->string('nom_medecin')->nullable();
+            $table->bigInteger('nationalite_id')->nullable();
+            $table->bigInteger('ecole_provenance_id')->nullable();
 
-            $table->text('personne_prevenir')->nullable();
-            $table->string('photo')->nullable();
+             $table->string('photo')->nullable();
             $table->string('carte_identite')->nullable();
-            $table->string('naissance')->nullable();
+
+            $table->string('naissance_eleve')->nullable();
+
+              //infos parents
+           
+            $table->bigInteger('parent_id')->nullable();
+
 
             //infos de santé
             $table->tinyInteger('groupe_id')->nullable();
             $table->string('certificat_medical')->nullable();
-           
-
+             $table->string('nom_medecin')->nullable();
             $table->string('numero_medecin')->nullable();
-            $table->string('numero_personne_prevenir')->nullable();
-            $table->tinyInteger('lien_parente_personne')->nullable();
-            $table->string('naissance_eleve')->nullable();
 
             $table->text('allergie')->nullable();
 

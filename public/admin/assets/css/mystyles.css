@@ -1,0 +1,11 @@
+
+
+body {
+    font-family: "Poppins", sans-serif !important;
+    font-size: 14px;
+    color: #646B72;
+    line-height: 1.5;
+    background-color: #F7F7F7;
+    overflow-y: auto;
+    overflow-x: hidden;
+}

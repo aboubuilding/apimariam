@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
 
 
-            $table->bigInteger('personnel_id')->nullable();
+            $table->bigInteger('employe_id')->nullable();
             $table->date('date_souscription')->nullable();
             $table->float('prelevement_mensuel')->nullable();
 

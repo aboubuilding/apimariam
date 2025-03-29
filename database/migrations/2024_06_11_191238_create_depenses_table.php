@@ -16,18 +16,25 @@ return new class extends Migration
         Schema::create('depenses', function (Blueprint $table) {
             $table->id();
 
-             $table->string('libelle')->nullable();
+             $table->string('reference')->nullable();
             $table->string('beneficaire')->nullable();
-            $table->text('motif_depense')->nullable();
+             $table->string('telephone_beneficiaire')->nullable();
+            $table->text('commentaire')->nullable();
             $table->date('date_depense')->nullable();
 
-            $table->integer('montant')->nullable();
+          
             $table->bigInteger('annee_id')->nullable();
 
             $table->bigInteger('utilisateur_id')->nullable();
 
             $table->tinyInteger('statut_depense')->nullable();
+
+             $table->bigInteger('fournisseur_id')->nullable();
+
          
+
+                 $table->bigInteger('categorie_depense_id')->nullable();
+
 
             $table->integer('etat')->default(1);
             $table->timestamps();

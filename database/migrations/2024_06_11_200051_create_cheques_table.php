@@ -22,7 +22,6 @@ return new class extends Migration
             $table->bigInteger('paiement_id')->nullable();
             $table->date('date_emission')->nullable();
             $table->tinyInteger('statut')->nullable();
-            $table->date('date_encaissement')->nullable();
             $table->bigInteger('banque_id')->nullable();
             $table->integer('etat')->default(1);
             $table->timestamps();

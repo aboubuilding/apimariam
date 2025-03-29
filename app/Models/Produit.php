@@ -26,14 +26,11 @@ class Produit extends Model
 
 
         'libelle',
-        'prix_unitaire_achat',
-        'prix_unitaire_vente',
-        'prix_unitaire_stock',
+        'prix_unitaire',
+       
         'photo',
-        'unite',
-        'unite_achat',
-        'equivalence',
-        'type_produit',
+       
+        'type_produit_id',
 
 
 
@@ -48,15 +45,11 @@ class Produit extends Model
      *
 
      * @param  string $libelle
-     * @param  int $prix_unitaire_achat
-     * @param  int $prix_unitaire_vente
-     * @param  int $prix_unitaire_stock
-     * @param  string $photo
-     * @param  string $unite
-     * @param  string $unite_achat
-     * @param  float $equivalence
+     * @param  int $prix_unitaire
     
-     * @param  int $type_produit
+     * @param  string $photo
+     
+     * @param  int $type_produit_id
 
 
      * @return Produit
@@ -64,14 +57,11 @@ class Produit extends Model
 
     public static function addProduit(
         $libelle,
-        $prix_unitaire_achat,
-        $prix_unitaire_vente,
-        $prix_unitaire_stock,
+        $prix_unitaire,
+       
         $photo,
-        $unite,
-        $unite_achat,
-        $equivalence,
-        $type_produit
+       
+        $type_produit_id
     
 
 
@@ -81,14 +71,11 @@ class Produit extends Model
 
 
         $produit->libelle = $libelle;
-        $produit->prix_unitaire_achat = $prix_unitaire_achat;
-        $produit->prix_unitaire_vente = $prix_unitaire_vente;
-        $produit->prix_unitaire_stock = $prix_unitaire_stock;
+        $produit->prix_unitaire = $prix_unitaire;
+       
         $produit->photo = $photo;
-        $produit->unite = $unite;
-        $produit->unite_achat = $unite_achat;
-        $produit->equivalence = $equivalence;
-        $produit->type_produit = $type_produit;
+       
+        $produit->type_produit_id = $type_produit_id;
 
 
         $produit->created_at = Carbon::now();
@@ -114,15 +101,11 @@ class Produit extends Model
      * Update d'une Produit
 
      * @param  string $libelle
-     * @param  int $prix_unitaire_achat
-     * @param  int $prix_unitaire_vente
-     * @param  int $prix_unitaire_stock
-     * @param  string $photo
-     * @param  string $unite
-     * @param  string $unite_achat
-     * @param  float $equivalence
+     * @param  int $prix_unitaire
     
-     * @param  int $type_produit
+     * @param  string $photo
+    
+     * @param  int $type_produit_id
 
 
 
@@ -133,14 +116,11 @@ class Produit extends Model
 
     public static function updateProduit(
          $libelle,
-        $prix_unitaire_achat,
-        $prix_unitaire_vente,
-        $prix_unitaire_stock,
+        $prix_unitaire,
+       
         $photo,
-        $unite,
-        $unite_achat,
-        $equivalence,
-        $type_produit,
+       
+        $type_produit_id,
 
 
 
@@ -153,16 +133,12 @@ class Produit extends Model
 
 
             'libelle' => $libelle,
-            'prix_unitaire_achat' => $prix_unitaire_achat,
-            'prix_unitaire_vente' => $prix_unitaire_vente,
-            'prix_unitaire_stock' => $prix_unitaire_stock,
+            'prix_unitaire' => $prix_unitaire,
+           
             
             'photo' => $photo,
-            'unite' => $unite,
-            'unite_achat' => $unite_achat,
-         
-            'equivalence' => $equivalence,
-            'type_produit' => $type_produit,
+            
+            'type_produit_id' => $type_produit_id,
 
             'id' => $id,
 
@@ -203,14 +179,14 @@ class Produit extends Model
      * Retourne le nombre de produits    par  annnee ...
 
 
- * @param  int $type_produit
+ * @param  int $type_produit_id
     
          * @return  array
      */
 
     public static function getListe(
 
-  $type_produit = null,
+  $type_produit_id = null,
 
 
 
@@ -222,9 +198,9 @@ class Produit extends Model
 
         ->orderBy('produits.libelle', 'ASC');
 
-         if ($type_produit != null) {
+         if ($type_produit_id != null) {
 
-            $query->where('type_produit', '=', $type_produit);
+            $query->where('type_produit_id', '=', $type_produit_id);
         }
 
 
@@ -241,7 +217,7 @@ class Produit extends Model
 
 
 
- * @param  int $type_produit
+ * @param  int $type_produit_id
 
 
      * @return  int $total
@@ -249,7 +225,7 @@ class Produit extends Model
 
     public static function getTotal(
 
- $type_produit = null,
+ $type_produit_id = null,
 
     ){
 
@@ -259,9 +235,9 @@ class Produit extends Model
            ;
 
 
-             if ($type_produit != null) {
+             if ($type_produit_id != null) {
 
-            $query->where('type_produit', '=', $type_produit);
+            $query->where('type_produit_id', '=', $type_produit_id);
         }
 
 
@@ -279,6 +255,20 @@ class Produit extends Model
     }
 
 
+
+
+
+
+     /**
+     * Obtenir un type de produit 
+     *
+     */
+    public function typeproduit()
+    {
+
+
+        return $this->belongsTo(TypeProduit::class, 'type_produit_id');
+    }
 
 
 

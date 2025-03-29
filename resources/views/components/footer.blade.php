@@ -1,11 +1,4 @@
- <!--**********************************
-            Footer start
-        ***********************************-->
-      <div class="footer">
-            <div class="copyright">
-                <p>Copyright © Designed &amp; Developed by <a href="http://dexignzone.com/" target="_blank">DexignZone</a> <span class="current-year">2023</span></p>
-            </div>
-        </div>
-        <!--**********************************
-            Footer end
-        ***********************************-->
+<div class="copyright-footer d-flex align-items-center justify-content-between border-top bg-white gap-3 flex-wrap">
+    <p class="fs-13 text-gray-9 mb-0">2024 - 2025 &copy; EIM. Tous les droités réservés </p>
+   
+</div>

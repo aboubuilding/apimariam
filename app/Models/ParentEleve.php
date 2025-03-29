@@ -36,7 +36,7 @@ class ParentEleve extends Model
         'role',
         'annee_id',
         'nationalite_id',
-        'quartier_id_id',
+        'quartier_id',
         'adresse',
         'whatsapp',
         'email',
@@ -60,7 +60,7 @@ class ParentEleve extends Model
      * @param  int $role
      * @param int $annee_id
      * @param int $nationalite_id
-     * @param string $quartier_id_id
+     * @param string $quartier_id
      * @param string $adresse
      * @param string $email
      *
@@ -307,4 +307,38 @@ class ParentEleve extends Model
 
         return 0;
     }
+
+
+
+ /**
+     * Obtenir un quartier
+     *
+     */
+    public function quartier()
+    {
+
+
+        return $this->belongsTo(Quartier::class, 'quartier_id');
+    }
+
+
+
+ /**
+     * Obtenir un espace 
+     *
+     */
+    public function espace()
+    {
+
+
+        return $this->belongsTo(Espace::class, 'espace_id');
+    }
+
+
+
+
+
+
+
+
 }

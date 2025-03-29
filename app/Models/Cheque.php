@@ -33,7 +33,7 @@ class Cheque extends Model
         'paiement_id',
         'date_emission',
         'statut',
-        'date_encaissement',
+       
         'banque_id',
        
 
@@ -53,7 +53,7 @@ class Cheque extends Model
      * @param  date $paiement_id
      * @param  date $date_emission
      * @param  int $statut
-     * @param  date $date_encaissement
+   
      * @param  int $banque_id
      
 
@@ -71,7 +71,7 @@ class Cheque extends Model
         $paiement_id,
         $date_emission,
         $statut,
-        $date_encaissement,
+    
         $banque_id
        
 
@@ -86,7 +86,7 @@ class Cheque extends Model
         $cheque->paiement_id = $paiement_id;
         $cheque->date_emission = $date_emission;
         $cheque->statut = $statut;
-        $cheque->date_encaissement = $date_encaissement;
+       
         $cheque->banque_id = $banque_id;
       
     
@@ -119,7 +119,7 @@ class Cheque extends Model
      * @param  date $paiement_id
      * @param  date $date_emission
      * @param  int $statut
-     * @param  date $date_encaissement
+   
      * @param  int $banque_id
      
 
@@ -135,7 +135,7 @@ class Cheque extends Model
         $paiement_id,
         $date_emission,
         $statut,
-        $date_encaissement,
+   
         $banque_id,
        
         $id)
@@ -152,7 +152,7 @@ class Cheque extends Model
             'paiement_id' => $paiement_id,
             'date_emission' => $date_emission,
             'statut' => $statut,
-            'date_encaissement' => $date_encaissement,
+        
             'banque_id' => $banque_id,
            
            

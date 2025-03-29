@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('libelle')->nullable();
             $table->text('description')->nullable();
             $table->integer('numero_ordre')->nullable();
-            $table->integer('cycle_id')->nullable();
+            $table->bigInteger('cycle_id')->nullable();
            
             $table->integer('etat')->default(1);
             $table->timestamps();

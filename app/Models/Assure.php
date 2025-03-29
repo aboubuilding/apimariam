@@ -27,7 +27,7 @@ class Assure extends Model
     protected $fillable = [
 
 
-        'personnel_id',
+        'employe_id',
         'date_souscription',
         'prelevement_mensuel',
         'assurance_id',
@@ -44,7 +44,7 @@ class Assure extends Model
      * Ajouter une Assure
      *
 
-     * @param  int $personnel_id
+     * @param  int $employe_id
      * @param  date $date_souscription
      * @param  int $prelevement_mensuel
      * @param  int $assurance_id
@@ -56,7 +56,7 @@ class Assure extends Model
      */
 
     public static function addAssure(
-        $personnel_id,
+        $employe_id,
         $date_souscription,
         $prelevement_mensuel,
         $assurance_id,
@@ -67,7 +67,7 @@ class Assure extends Model
         $assure = new Assure();
 
 
-        $assure->personnel_id = $personnel_id;
+        $assure->employe_id = $employe_id;
         $assure->date_souscription = $date_souscription;
         $assure->prelevement_mensuel = $prelevement_mensuel;
         $assure->assurance_id = $assurance_id;
@@ -96,7 +96,7 @@ class Assure extends Model
     /**
      * Update d'une Assure scolaire
 
-   * @param  int $personnel_id
+   * @param  int $employe_id
      * @param  date $date_souscription
      * @param  int $prelevement_mensuel
      * @param  int $assurance_id
@@ -109,7 +109,7 @@ class Assure extends Model
      */
 
     public static function updateAssure(
-       $personnel_id,
+       $employe_id,
         $date_souscription,
         $prelevement_mensuel,
         $assurance_id,
@@ -123,7 +123,7 @@ class Assure extends Model
 
 
 
-            'personnel_id' => $personnel_id,
+            'employe_id' => $employe_id,
             'date_souscription' => $date_souscription,
             'prelevement_mensuel' => $prelevement_mensuel,
             'assurance_id' => $assurance_id,
@@ -163,7 +163,7 @@ class Assure extends Model
 
     /**
      * Retourne la liste des Assures
-     * @param  int $personnel_id
+     * @param  int $employe_id
      * @param  int $assurance_id
      * @param  int $annee_id
 
@@ -173,7 +173,7 @@ class Assure extends Model
 
     public static function getListe(
 
-        $personnel_id = null,
+        $employe_id = null,
       
         $assurance_id = null, 
         $annee_id = null
@@ -195,9 +195,9 @@ class Assure extends Model
             $query->where('assurance_id', '=', $assurance_id);
         }
 
-         if ($personnel_id != null) {
+         if ($employe_id != null) {
 
-            $query->where('personnel_id', '=', $personnel_id);
+            $query->where('employe_id', '=', $employe_id);
         }
 
        
@@ -212,7 +212,7 @@ class Assure extends Model
      * Retourne le nombre  des  activités 
 
 
-   * @param  int $personnel_id
+   * @param  int $employe_id
      * @param  int $assurance_id
      * @param  int $annee_id
 
@@ -222,7 +222,7 @@ class Assure extends Model
      */
 
     public static function getTotal(
-       $personnel_id = null,
+       $employe_id = null,
       
         $assurance_id = null, 
         $annee_id = null
@@ -243,9 +243,9 @@ class Assure extends Model
         }
 
 
-        if ($personnel_id != null) {
+        if ($employe_id != null) {
 
-            $query->where('assures.personnel_id', '=', $personnel_id);
+            $query->where('assures.employe_id', '=', $employe_id);
         }
 
          if ($assurance_id != null) {
@@ -284,11 +284,11 @@ class Assure extends Model
      * Obtenir un personnel  
      *
      */
-    public function personnel()
+    public function employe()
     {
 
 
-        return $this->belongsTo(Personnel::class, 'personnel_id');
+        return $this->belongsTo(Employe::class, 'employe_id');
     }
 
 

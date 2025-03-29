@@ -27,16 +27,15 @@ class Achat extends Model
     protected $fillable = [
 
 
-        'date_achat',
-        'date_livraison',
-        'nom_acheteur',
         'reference',
-        'bon_commande',
-        'commentaire',
-        'fournisseur_id',
+        
+        'date_achat',
+        'statut',
         'annee_id',
-        'statut_paiement',
-        'statut_livraison',
+        'nom_acheteur',
+        'fournisseur_id',
+        'type_journal_id',
+      
 
 
 
@@ -50,17 +49,15 @@ class Achat extends Model
      * Ajouter un achat
      *
 
-     * @param  date $date_achat
-     * @param  date $date_livraison
-
-     * @param  string $nom_acheteur
      * @param  string $reference
-     * @param  int $bon_commande
-     * @param  int $commentaire
-     * @param  int $fournisseur_id
+     * @param  date $date_achat
+
+     * @param  int $statut
      * @param  int $annee_id
-     * @param  int $statut_paiement
-     * @param  int $statut_livraison
+     * @param  string $nom_acheteur
+     * @param  int $fournisseur_id
+     * @param  int $type_journal_id
+    
 
 
 
@@ -68,31 +65,28 @@ class Achat extends Model
      */
 
     public static function addAchat(
-        $date_achat,
-        $date_livraison,
-        $nom_acheteur,
         $reference,
-        $bon_commande,
-        $commentaire,
-        $fournisseur_id,
+        $date_achat,
+        $statut,
         $annee_id,
-        $statut_paiement,
-        $statut_livraison
+        $nom_acheteur,
+        $fournisseur_id,
+        $type_journal_id
+        
 
     )
     {
         $achat = new Achat();
 
 
-        $achat->date_achat = $date_achat;
-        $achat->date_livraison = $date_livraison;
-        $achat->nom_acheteur = $nom_acheteur;
         $achat->reference = $reference;
-        $achat->bon_commande = $bon_commande;
-        $achat->fournisseur_id = $fournisseur_id;
+        $achat->date_achat = $date_achat;
+        $achat->statut = $statut;
         $achat->annee_id = $annee_id;
-        $achat->statut_paiement = $statut_paiement;
-        $achat->statut_livraison = $statut_livraison;
+        $achat->nom_acheteur = $nom_acheteur;
+        $achat->fournisseur_id = $fournisseur_id;
+        $achat->type_journal_id = $type_journal_id;
+      
 
 
 
@@ -118,16 +112,14 @@ class Achat extends Model
     /**
      * Update d'un achat
 
-    * @param  date $date_achat
-    * @param  date $date_livraison
-     * @param  string $nom_acheteur
-     * @param  string $reference
-     * @param  int $bon_commande
-     * @param  int $commentaire
-     * @param  int $fournisseur_id
+    * @param  string $reference
+     * @param  date $date_achat
+
+     * @param  int $statut
      * @param  int $annee_id
-     * @param  int $statut_paiement
-     * @param  int $statut_livraison
+     * @param  string $nom_acheteur
+     * @param  int $fournisseur_id
+     * @param  int $type_journal_id
 
 
 
@@ -137,16 +129,13 @@ class Achat extends Model
      */
 
     public static function updateAchat(
-        $date_achat,
-        $date_livraison,
-        $nom_acheteur,
         $reference,
-        $bon_commande,
-        $commentaire,
-        $fournisseur_id,
+        $date_achat,
+        $statut,
         $annee_id,
-        $statut_paiement,
-        $statut_livraison,
+        $nom_acheteur,
+        $fournisseur_id,
+        $type_journal_id,
 
         $id)
     {
@@ -156,16 +145,14 @@ class Achat extends Model
 
 
 
-            'date_achat' => $date_achat,
-            'date_livraison' => $date_livraison,
-            'nom_acheteur' => $nom_acheteur,
             'reference' => $reference,
-            'bon_commande' => $bon_commande,
-            'commentaire' => $commentaire,
-            'fournisseur_id' => $fournisseur_id,
+            'date_achat' => $date_achat,
+            'statut' => $statut,
             'annee_id' => $annee_id,
-            'statut_paiement' => $statut_paiement,
-            'statut_livraison' => $statut_livraison,
+            'nom_acheteur' => $nom_acheteur,
+            'fournisseur_id' => $fournisseur_id,
+            'type_journal_id' => $type_journal_id,
+          
 
 
             'id' => $id,
@@ -206,8 +193,8 @@ class Achat extends Model
 
      * @param  int $annee_id
      * @param  int $fournisseur_id
-     * @param  int $statut_paiement
-     * @param  int $statut_livraison
+     * @param  int $statut
+     * @param  int $type_journal_id
 
      *
      * @return  array
@@ -218,8 +205,8 @@ class Achat extends Model
         $annee_id = null,
 
         $fournisseur_id = null,
-        $statut_paiement = null,
-        $statut_livraison = null
+        $statut = null,
+        $type_journal_id = null
 
 
     ) {
@@ -241,15 +228,15 @@ class Achat extends Model
 
 
 
-         if ($statut_paiement != null) {
+         if ($statut != null) {
 
-            $query->where('statut_paiement', '=', $statut_paiement);
+            $query->where('statut', '=', $statut);
         }
 
 
-            if ($statut_livraison != null) {
+            if ($type_journal_id != null) {
 
-            $query->where('statut_livraison', '=', $statut_livraison);
+            $query->where('type_journal_id', '=', $type_journal_id);
         }
 
 
@@ -267,8 +254,8 @@ class Achat extends Model
 
    * @param  int $annee_id
      * @param  int $fournisseur_id
-     * @param  int $statut_paiement
-     * @param  int $statut_livraison
+     * @param  int $statut
+     * @param  int $type_journal_id
 
 
      * @return  int $total
@@ -278,8 +265,8 @@ class Achat extends Model
          $annee_id = null,
 
         $fournisseur_id = null,
-        $statut_paiement = null,
-        $statut_livraison = null
+        $statut = null,
+        $type_journal_id = null
 
 
 
@@ -305,15 +292,15 @@ class Achat extends Model
 
 
 
-         if ($statut_paiement != null) {
+         if ($statut != null) {
 
-            $query->where('statut_paiement', '=', $statut_paiement);
+            $query->where('statut', '=', $statut);
         }
 
 
-            if ($statut_livraison != null) {
+            if ($type_journal_id != null) {
 
-            $query->where('statut_livraison', '=', $statut_livraison);
+            $query->where('type_journal_id', '=', $type_journal_id);
         }
 
 
@@ -354,6 +341,19 @@ class Achat extends Model
 
 
         return $this->belongsTo(Fournisseur::class, 'fournisseur_id');
+    }
+
+
+
+    /**
+     * Obtenir un fournisseur
+     *
+     */
+    public function typejournal()
+    {
+
+
+        return $this->belongsTo(TypeJournal::class, 'type_journal_id');
     }
 
 

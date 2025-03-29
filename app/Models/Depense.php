@@ -27,14 +27,17 @@ class Depense extends Model
     protected $fillable = [
 
 
-        'libelle',
+        'reference',
         'beneficaire',
-        'motif_depense',
+        'telephone_beneficiaire',
+        'commentaire',
         'date_depense',
-        'montant',
         'annee_id',
         'utilisateur_id',
         'statut_depense',
+        'fournisseur_id',
+        'categorie_depense_id',
+  
        
        
 
@@ -48,14 +51,16 @@ class Depense extends Model
      * Ajouter une Depense
      *
 
-     * @param  string $libelle
+     * @param  string $reference
      * @param  string $beneficaire
-     * @param  string $motif_depense
+     * @param  string $telephone_beneficiaire
+     * @param  string $commentaire
      * @param  date $date_depense
-     * @param  int $montant
      * @param  int $annee_id
      * @param  int $utilisateur_id
      * @param  int $statut_depense
+     * @param  int $fournisseur_id
+     * @param  int $categorie_depense_id
 
     
 
@@ -63,14 +68,15 @@ class Depense extends Model
      */
 
     public static function addDepense(
-        $libelle,
+        $reference,
         $beneficaire,
-        $motif_depense,
+        $telephone_beneficiaire,
         $date_depense,
-        $montant,
         $annee_id,
         $utilisateur_id,
-        $statut_depense
+        $statut_depense,
+        $fournisseur_id,
+        $categorie_depense_id
        
         
        
@@ -80,15 +86,17 @@ class Depense extends Model
         $depense = new Depense();
 
 
-        $depense->libelle = $libelle;
+        $depense->reference = $reference;
         $depense->beneficaire = $beneficaire;
-        $depense->motif_depense = $motif_depense;
+        $depense->telephone_beneficiaire = $telephone_beneficiaire;
+        $depense->commentaire = $commentaire;
         $depense->date_depense = $date_depense;
-        $depense->montant = $montant;
         $depense->annee_id = $annee_id;
 
         $depense->utilisateur_id = $utilisateur_id;
         $depense->statut_depense = $statut_depense;
+        $depense->fournisseur_id = $fournisseur_id;
+        $depense->categorie_depense_id = $categorie_depense_id;
        
         $depense->created_at = Carbon::now();
 
@@ -112,15 +120,17 @@ class Depense extends Model
     /**
      * Update d'une Depense scolaire
 
-    * @param  string $libelle
+   
+     * @param  string $reference
      * @param  string $beneficaire
-     * @param  string $motif_depense
+     * @param  string $telephone_beneficiaire
+     * @param  string $commentaire
      * @param  date $date_depense
-     * @param  int $montant
      * @param  int $annee_id
      * @param  int $utilisateur_id
      * @param  int $statut_depense
-    
+     * @param  int $fournisseur_id
+     * @param  int $categorie_depense_id
     
 
      * @param int $id
@@ -128,14 +138,15 @@ class Depense extends Model
      */
 
     public static function updateDepense(
-         $libelle,
+          $reference,
         $beneficaire,
-        $motif_depense,
+        $telephone_beneficiaire,
         $date_depense,
-        $montant,
         $annee_id,
         $utilisateur_id,
         $statut_depense,
+        $fournisseur_id,
+        $categorie_depense_id,
        
        
         $id)
@@ -146,15 +157,17 @@ class Depense extends Model
 
 
 
-            'libelle' => $libelle,
+            'reference' => $reference,
             'beneficaire' => $beneficaire,
-            'motif_depense' => $motif_depense,
+            'telephone_beneficiaire' => $telephone_beneficiaire,
+            'commentaire' => $commentaire,
             'date_depense' => $date_depense,
-            'montant' => $montant,
             'annee_id' => $annee_id,
 
             'utilisateur_id' => $utilisateur_id,
             'statut_depense' => $statut_depense,
+            'fournisseur_id' => $fournisseur_id,
+            'categorie_depense_id' => $categorie_depense_id,
 
 
            
@@ -196,6 +209,8 @@ class Depense extends Model
      * @param  int $annee_id
      * @param  int $utilisateur_id
      * @param  int $statut_depense
+     * @param  int $fournisseur_id
+     * @param  int $categorie_depense_id
   
  
 
@@ -208,7 +223,9 @@ class Depense extends Model
 
         $annee_id = null,
         $utilisateur_id = null,
-        $statut_depense = null
+        $statut_depense = null,
+        $fournisseur_id = null,
+        $categorie_depense_id = null,
       
 
 
@@ -238,6 +255,19 @@ class Depense extends Model
             $query->where('statut_depense', '=', $statut_depense);
         }
 
+
+
+         if ($fournisseur_id != null) {
+
+            $query->where('fournisseur_id', '=', $fournisseur_id);
+        }
+
+
+        if ($categorie_depense_id != null) {
+
+            $query->where('categorie_depense_id', '=', $categorie_depense_id);
+        }
+
        
 
 
@@ -253,6 +283,8 @@ class Depense extends Model
        * @param  int $annee_id
      * @param  int $utilisateur_id
      * @param  int $statut_depense
+     * @param  int $fournisseur_id
+     * @param  int $categorie_depense_id
   
     
 
@@ -264,7 +296,9 @@ class Depense extends Model
 
            $annee_id = null,
         $utilisateur_id = null,
-        $statut_depense = null
+        $statut_depense = null,
+        $fournisseur_id = null,
+        $categorie_depense_id = null,
 
 
     ) {
@@ -292,6 +326,18 @@ class Depense extends Model
         if ($statut_depense != null) {
 
             $query->where('statut_depense', '=', $statut_depense);
+        }
+
+
+         if ($fournisseur_id != null) {
+
+            $query->where('fournisseur_id', '=', $fournisseur_id);
+        }
+
+
+        if ($categorie_depense_id != null) {
+
+            $query->where('categorie_depense_id', '=', $categorie_depense_id);
         }
 
        
@@ -332,7 +378,35 @@ class Depense extends Model
     {
 
 
-        return $this->belongsTo(User::class, 'utilisateur_id');
+        return $this->belongsTo(Utilisateur::class, 'utilisateur_id');
+    }
+
+
+
+
+     /**
+     * Obtenir un fournisseur 
+     *
+     */
+    public function fournisseur()
+    {
+
+
+        return $this->belongsTo(Fournisseur::class, 'fournisseur_id');
+    }
+
+
+
+
+     /**
+     * Obtenir une catégorie  
+     *
+     */
+    public function categorie()
+    {
+
+
+        return $this->belongsTo(CategorieDepense::class, 'categorie_depense_id');
     }
 
 

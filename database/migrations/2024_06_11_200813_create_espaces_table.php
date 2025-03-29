@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('espaces', function (Blueprint $table) {
             $table->id();
             $table->string('nom_famille')->nullable();
-            $table->integer('annee_id')->nullable();
+            $table->bigInteger('annee_id')->nullable();
+           
 
             $table->integer('etat')->default(1);
             $table->timestamps();

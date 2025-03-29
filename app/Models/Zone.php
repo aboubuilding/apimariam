@@ -30,8 +30,7 @@ class Zone extends Model
         'libelle',
         'description',
         'annee_id',
-        'employe_id',
-        'voiture_id',
+       
 
 
 
@@ -48,8 +47,7 @@ class Zone extends Model
      * @param  date $libelle
      * @param  int $description
      * @param  int $annee_id
-     * @param  int $employe_id
-     * @param  int $voiture_id
+    
 
 
 
@@ -62,8 +60,7 @@ class Zone extends Model
         $libelle,
         $description,
         $annee_id,
-        $employe_id,
-        $voiture_id,
+       
 
 
     )
@@ -74,8 +71,7 @@ class Zone extends Model
         $zone->libelle = $libelle;
         $zone->description = $description;
         $zone->annee_id = $annee_id;
-        $zone->employe_id = $employe_id;
-        $zone->voiture_id = $voiture_id;
+      
 
 
 
@@ -106,8 +102,7 @@ class Zone extends Model
  * @param date $libelle
      * * @param int $description
      * * @param int $annee_id
-     * * @param int $employe_id
-     * * @param int $voiture_id
+     
 
  *
      *
@@ -119,8 +114,7 @@ class Zone extends Model
         $libelle,
         $description,
         $annee_id,
-        $employe_id,
-        $voiture_id,
+       
 
 
 
@@ -136,8 +130,7 @@ class Zone extends Model
             'libelle' => $libelle,
             'description' => $description,
             'annee_id' => $annee_id,
-            'employe_id' => $employe_id,
-            'voiture_id' => $voiture_id,
+            
 
 
             'id' => $id,
@@ -177,8 +170,7 @@ class Zone extends Model
 
 
      * @param  int $annee_id
-     * @param  int $employe_id
-     * @param  int $voiture_id
+   
 
 
 
@@ -191,8 +183,7 @@ class Zone extends Model
 
 
         $annee_id = null,
-        $employe_id = null,
-        $voiture_id = null
+       
 
 
 
@@ -211,16 +202,7 @@ class Zone extends Model
             $query->where('annee_id', '=', $annee_id);
         }
 
-        if ($employe_id != null) {
-
-            $query->where('employe_id', '=', $employe_id);
-        }
-
-
-        if ($voiture_id != null) {
-
-            $query->where('voiture_id', '=', $voiture_id);
-        }
+        
 
 
 
@@ -238,8 +220,7 @@ class Zone extends Model
      *
 
      * @param int $annee_id
-     * * @param int $employe_id
-     * * @param int $voiture_id
+    
 
      *
      * @return  int $total
@@ -247,9 +228,8 @@ class Zone extends Model
 
     public static function getTotal(
 
-        $annee_id = null,
-        $employe_id = null,
-        $voiture_id = null
+        $annee_id = null
+       
 
 
 
@@ -270,19 +250,7 @@ class Zone extends Model
             $query->where('annee_id', '=', $annee_id);
         }
 
-        if ($employe_id != null) {
-
-            $query->where('employe_id', '=', $employe_id);
-        }
-
-
-        if ($voiture_id != null) {
-
-            $query->where('voiture_id', '=', $voiture_id);
-        }
-
-
-
+       
 
 
 
@@ -311,29 +279,7 @@ class Zone extends Model
 
 
 
-    /**
-     * Obtenir une année
-     *
-     */
-    public function employe()
-    {
-
-
-        return $this->belongsTo(Employe::class, 'employe_id');
-    }
-
-
-
-    /**
-     * Obtenir une année
-     *
-     */
-    public function voiture()
-    {
-
-
-        return $this->belongsTo(Voiture::class, 'voiture_id');
-    }
+   
 
 
 
