@@ -19,7 +19,7 @@ class PaieFactory extends Factory
         return [
             //
 
-            'personnel_id' =>$this->faker->numberBetween(1, 10),
+            'employe_id' =>$this->faker->numberBetween(1, 10),
             'periode_id' =>$this->faker->numberBetween(1, 5),
             'avantage_concede' => $this->faker->randomFloat(2, 1000, 5000),
             'prelevement_mensuel' => $this->faker->randomFloat(2, 100, 2000),

@@ -1,11 +1,11 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\DetailBon;
+use App\Models\Emplacement;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DetailBonSeeder extends Seeder
+class EmplacementSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class DetailBonSeeder extends Seeder
     public function run()
     {
         //
-        DetailBon::factory()->count(20)->create();
+        Emplacement::factory()->count(20)->create();
     }
 }

@@ -22,7 +22,7 @@ class MagasinFactory extends Factory
             'libelle' => $this->faker->word(),
             'responsable' => $this->faker->name(),
             'description' => $this->faker->paragraph(),
-            'etat' => $this->faker->randomElement([1, 0]),
+            
 
         ];
     }

@@ -23,10 +23,10 @@ class StockFactory extends Factory
             'produit_id' =>$this->faker->numberBetween(1, 30),
             'magasin_id' =>$this->faker->numberBetween(1, 3),
             'boutique_id' =>$this->faker->numberBetween(1, 10),
-            'bon_id' =>$this->faker->numberBetween(1, 3),
+            
             'annee_id' =>$this->faker->numberBetween(1, 3),
             'quantite' => $this->faker->randomFloat(2, 1, 100),
-            'type_mouvement' => $this->faker->numberBetween(1, 2),
+            'prix_unitaire' => $this->faker->numberBetween(1000, 5000),
 
         ];
     }

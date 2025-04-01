@@ -18,7 +18,7 @@ class DeductionFactory extends Factory
     {
         return [
             //
-            'personnel_id' => $this->faker->numberBetween(1, 10),
+            'employe_id' => $this->faker->numberBetween(1, 10),
             'cnss' => $this->faker->randomFloat(2, 0, 5000),
             'charges_familiale' => $this->faker->randomFloat(2, 0, 3000),
             'forfait_professionnel' => $this->faker->randomFloat(2, 0, 2000),

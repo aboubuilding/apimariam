@@ -1,11 +1,11 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\LocationLivre;
+use App\Models\TypeProduit;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class LocationSeeder extends Seeder
+class TypeProduitSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class LocationSeeder extends Seeder
     public function run()
     {
         //
-        LocationLivre::factory()->count(15)->create();
+        TypeProduit::factory()->count(20)->create();
     }
 }

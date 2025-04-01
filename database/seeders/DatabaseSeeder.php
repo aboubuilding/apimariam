@@ -16,43 +16,47 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             AchatSeeder::class,
-            ActiviteSeeder::class,
+           
             AnneeEditionSeeder::class,
             AnneeSeeder::class,
             BanqueSeeder::class,
-            BonSeeder::class,
+            
             BoutiqueSeeder::class,
             BulletinSeeder::class,
             CaisseSeeder::class,
-            CantineSeeder::class,
-            CarSeeder::class,
+           
+            CategorieDepenseSeeder::class,
             CategorieLivreSeeder::class,
-            EmployeSeeder::class,
- 
+            ChauffeurSeeder::class,
+            ChauffeurZoneSeeder::class,
             ChequeSeeder::class,
-
             ClasseSeeder::class,
             CompteSeeder::class,
             CycleSeeder::class,
+            
             DeductionSeeder::class,
             DepenseSeeder::class,
-            DepenseVoitureSeeder::class,
             DetailAchatSeeder::class,
-            DetailBonSeeder::class,
+            
             DetailSeeder::class,
+            DetailVenteSeeder::class,
+            EcoleProvenanceSeeder::class,
             EleveSeeder::class,
+            EleveServiceSeeder::class,
+            EmplacementSeeder::class,
             EmployeSeeder::class,
             EspaceSeeder::class,
             FournisseurSeeder::class,
-            FraisEcoleSeeder::class,
+            
             InscriptionSeeder::class,
-            LigneSeeder::class,
+            JournalSeeder::class,
+           
             LivreSeeder::class,
-            LocationSeeder::class,
+           
             MagasinSeeder::class,
             MaisonEditionSeeder::class,
             
-            MouvementSeeder::class,
+            
             NationaliteSeeder::class,
             NiveauSeeder::class,
             PaiementSeeder::class,
@@ -64,14 +68,19 @@ class DatabaseSeeder extends Seeder
             QuartierSeeder::class,
             RemunerationSeeder::class,
             RetenueSeeder::class,
-            SouscriptionSeeder::class,
-            SpecialiteEleveSeeder::class,
+            ServiceSeeder::class,
+            SpecialiteSeeder::class,
+            SpecialiteEleveSeeder::class, 
             
             StockSeeder::class,
             TrancheSeeder::class,
+            TransactionStockSeeder::class,
+            TypeProduitSeeder::class,
+            TypeServiceSeeder::class,
             UtilisateurSeeder::class,
             VaccinEleveSeeder::class,
             VaccinSeeder::class,
+            ValidationSeeder::class,
             VenteSeeder::class,
             VoitureSeeder::class,
             ZoneSeeder::class,

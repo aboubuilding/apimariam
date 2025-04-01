@@ -1,11 +1,11 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\DepenseVoiture;
+use App\Models\DetailVente;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DepenseVoitureSeeder extends Seeder
+class DetailVenteSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class DepenseVoitureSeeder extends Seeder
     public function run()
     {
         //
-        DepenseVoiture::factory()->count(200)->create();
+        DetailVente::factory()->count(20)->create();
     }
 }

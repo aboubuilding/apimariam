@@ -21,7 +21,7 @@ class TrancheFactory extends Factory
 
             'libelle' => $this->faker->word(),
             'date_butoire' => $this->faker->date(),
-            'type_paiement_id' => $this->faker->numberBetween(1, 10),
+            'type_service_id' => $this->faker->numberBetween(1, 10),
             'taux' => $this->faker->numberBetween(1, 100),
 
         ];

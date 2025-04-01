@@ -380,17 +380,6 @@ class TransactionStock extends Model
      * Obtenir un espace 
      *
      */
-    public function annee()
-    {
-
-
-        return $this->belongsTo(Annee::class, 'annee_id');
-    }
-
-
-
-
-
 
 
 

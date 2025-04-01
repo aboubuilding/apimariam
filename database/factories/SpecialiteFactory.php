@@ -2,20 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Zone;
+use App\Models\Specialite;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ZoneFactory extends Factory
+class SpecialiteFactory extends Factory
 {
-    protected $model = Zone::class;
+    protected $model = Specialite::class;
 
     public function definition()
     {
         return [
             'libelle' => $this->faker->word(),
-            'description' => $this->faker->sentence(),
-            'annee_id' => $this->faker->randomNumber(),
-            
+            'etat' => 1,
         ];
     }
 }

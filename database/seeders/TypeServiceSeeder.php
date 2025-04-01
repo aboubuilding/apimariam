@@ -1,11 +1,11 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\Activite;
+use App\Models\TypeService;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ActiviteSeeder extends Seeder
+class TypeServiceSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class ActiviteSeeder extends Seeder
     public function run()
     {
         //
-        Activite::factory()->count(50)->create();
+        TypeService::factory()->count(20)->create();
     }
 }

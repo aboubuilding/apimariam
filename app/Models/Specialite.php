@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Types\TypeStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

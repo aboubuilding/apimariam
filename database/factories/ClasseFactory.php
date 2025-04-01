@@ -17,14 +17,13 @@ class ClasseFactory extends Factory
     public function definition()
     {
         return [
-            //
+            
 
             'libelle' => $this->faker->word(),
-            'emplacement' => $this->faker->sentence(),
             'cycle_id' => $this->faker->numberBetween(1, 10),
             'niveau_id' => $this->faker->numberBetween(1, 10),
             'annee_id' => $this->faker->numberBetween(1, 3),
-
+            'emplacement_id' => $this->faker->numberBetween(1, 5),
         ];
     }
 }

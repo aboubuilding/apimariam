@@ -19,15 +19,13 @@ class ChequeFactory extends Factory
        return [
 
             'numero' => '00000',
-
             'emetteur' => $this->faker->name(),
-            'annee_id' => \App\Models\Annee::factory(),
-            'paiement_id' =>\App\Models\Paiement::factory(),
+            'annee_id' => $this->faker->numberBetween(1, 3),
+            'paiement_id' =>$this->faker->numberBetween(1, 10),
             'date_emission' => $this->faker->date(),
             'statut' => $this->faker->randomElement([0, 1]),
-            'date_encaissement' => $this->faker->optional()->date(),
-            'banque_id' => \App\Models\Banque::factory(),
-            'etat' => 1,
+            'banque_id' => $this->faker->numberBetween(1, 5),
+            
         ];
     }
 }

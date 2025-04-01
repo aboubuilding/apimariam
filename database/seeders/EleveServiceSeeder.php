@@ -1,11 +1,11 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\Car;
+use App\Models\EleveService;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CarSeeder extends Seeder
+class EleveServiceSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class CarSeeder extends Seeder
     public function run()
     {
         //
-        Car::factory()->count(30)->create();
+        EleveService::factory()->count(20)->create();
     }
 }

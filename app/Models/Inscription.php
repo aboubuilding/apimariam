@@ -197,7 +197,7 @@ class Inscription extends Model
 
 
 
-        $id)
+        )
     {
 
 
@@ -306,10 +306,9 @@ class Inscription extends Model
 
 
 
-        $query =   Inscription::
-      
-            ->where('inscriptions.etat', '!=', TypeStatus::SUPPRIME)
-            ->where('inscriptions.annee_id', '=', $annee_id)
+        $query = Inscription::where('inscriptions.etat', '!=', TypeStatus::SUPPRIME)
+        ->where('inscriptions.annee_id', '=', $annee_id);
+
           
 
 
@@ -418,11 +417,9 @@ class Inscription extends Model
 
     ) {
 
-        $query =   Inscription::
-        
-            ->where('inscriptions.etat', '!=', TypeStatus::SUPPRIME)
-            ->where('inscriptions.annee_id', '=', $annee_id)
-          
+        $query = Inscription::where('inscriptions.etat', '!=', TypeStatus::SUPPRIME)
+        ->where('inscriptions.annee_id', '=', $annee_id);
+
 
 
 

@@ -2,6 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Assure;
+use App\Models\Employe;
+use App\Models\Asurance;
+use App\Models\Annee;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +13,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class AssureFactory extends Factory
 {
+    protected $model = Assure::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,15 +23,12 @@ class AssureFactory extends Factory
     public function definition()
     {
         return [
-            //
-
-            'personnel_id' =>$this->faker->numberBetween(1, 10),
+            'employe_id' => \App\Models\Employe::factory(),
             'date_souscription' => $this->faker->date(),
             'prelevement_mensuel' => $this->faker->randomFloat(2, 50, 500),
-            'assurance_id' =>$this->faker->numberBetween(1, 10),
-            'annee_id' => $this->faker->numberBetween(1, 3),
+            'assurance_id' => \App\Models\Asurance::factory(),
+            'annee_id' => \App\Models\Annee::factory(),
            
-
         ];
     }
 }

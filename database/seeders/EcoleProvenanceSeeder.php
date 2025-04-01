@@ -1,11 +1,11 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\Cantine;
+use App\Models\EcoleProvenance;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CantineSeeder extends Seeder
+class EcoleProvenanceSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class CantineSeeder extends Seeder
     public function run()
     {
         //
-        Cantine::factory()->count(50)->create();
+        EcoleProvenance::factory()->count(20)->create();
     }
 }

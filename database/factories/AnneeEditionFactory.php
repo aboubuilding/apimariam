@@ -2,13 +2,16 @@
 
 namespace Database\Factories;
 
+use App\Models\AnneeEdition;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\AnneeEdition>
  */
 class AnneeEditionFactory extends Factory
 {
+    protected $model = AnneeEdition::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,10 +20,8 @@ class AnneeEditionFactory extends Factory
     public function definition()
     {
         return [
-            //
-
-           'libelle' => $this->faker->name(),
-           
+            'libelle' => 'Édition ' . $this->faker->year(),
+          
         ];
     }
 }

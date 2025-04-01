@@ -2,13 +2,17 @@
 
 namespace Database\Factories;
 
+use App\Models\Asurance;
+use App\Models\Annee;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Asurance>
  */
-class AssuranceFactory extends Factory
+class AsuranceFactory extends Factory
 {
+    protected $model = Asurance::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,12 +21,10 @@ class AssuranceFactory extends Factory
     public function definition()
     {
         return [
-            //
-            'personnel_id' => $this->faker->numberBetween(1, 10),
-            'date_souscription' => $this->faker->date(),
-            'prelevement_mensuel' => $this->faker->randomFloat(2, 50, 500),
-            'assurance_id' => $this->faker->numberBetween(1, 10),
-            'annee_id' => $this->faker->numberBetween(1, 3),
+            'nom_assureur' => $this->faker->company(),
+            'police_assurance' => $this->faker->regexify('[A-Z]{2}[0-9]{6}'),
+            'montant_annuel' => $this->faker->randomFloat(2, 500, 5000),
+            'annee_id' => \App\Models\Annee::factory(),
            
         ];
     }

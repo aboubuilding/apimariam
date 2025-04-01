@@ -21,7 +21,7 @@ class PaiementFactory extends Factory
 
             'reference' => '0000000',
             'payeur' => $this->faker->name(),
-            'motif_suppression' => $this->faker->text(),
+            
             'telephone_payeur' => $this->faker->phoneNumber(),
             'date_paiement' => $this->faker->date(),
             'statut_paiement' => $this->faker->randomElement([1, 0]),

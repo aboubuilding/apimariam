@@ -2,6 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Achat;
+use App\Models\Annee;
+use App\Models\Fournisseur;
+use App\Models\TypeJournal;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +13,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class AchatFactory extends Factory
 {
+    protected $model = Achat::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,18 +23,14 @@ class AchatFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'reference' => strtoupper($this->faker->unique()->bothify('ACH-#####')),
             'date_achat' => $this->faker->date(),
-            'date_livraison' => $this->faker->date(),
+            'statut' => $this->faker->randomElement([0, 1]), // 0: en attente, 1: validé
+            'annee_id' => Annee::factory(),
             'nom_acheteur' => $this->faker->name(),
-            'reference' => $this->faker->unique()->bothify('REF-#####'),
-            'bon_commande' => $this->faker->unique()->bothify('BC-#####'),
-            'commentaire' => $this->faker->sentence(),
-            'fournisseur_id' =>\App\Models\Fournisseur::factory(),
-            'annee_id' => \App\Models\Annee::factory(),
-            'statut_paiement' => $this->faker->randomElement([0, 1]),
-            'statut_livraison' => $this->faker->randomElement([0, 1]),
-            'etat' => 1,
+            'fournisseur_id' => Fournisseur::factory(),
+            'type_journal_id' => TypeJournal::factory(),
+            'etat' => 1
         ];
     }
 }

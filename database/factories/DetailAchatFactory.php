@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\DetailAchat;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +10,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class DetailAchatFactory extends Factory
 {
+    protected $model = DetailAchat::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,14 +20,11 @@ class DetailAchatFactory extends Factory
     public function definition()
     {
         return [
-            //
-             'achat_id' => $this->faker->numberBetween(1, 20),
-            'produit_id' => $this->faker->numberBetween(1,30),
-            'annee_id' => $this->faker->numberBetween(1, 3),
-            'quantite' => $this->faker->randomFloat(2, 1, 100),
-            'prix_unitaire' => $this->faker->randomFloat(2, 1, 1000),
-            'montant_achat' => $this->faker->randomFloat(2, 1, 10000),
-            'etat' => $this->faker->randomElement([null, 0]),
+            'quantite' => $this->faker->numberBetween(1, 100),  
+            'prix_unitaire' => $this->faker->numberBetween(10, 5000), 
+            'achat_id' => $this->faker->numberBetween(1, 5), 
+            'produit_id' => $this->faker->numberBetween(1, 5), 
+            
         ];
     }
 }

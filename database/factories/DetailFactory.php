@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Detail;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +10,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class DetailFactory extends Factory
 {
+    protected $model = Detail::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,22 +20,12 @@ class DetailFactory extends Factory
     public function definition()
     {
         return [
-            //
-
-             'montant' => $this->faker->randomFloat(2, 1, 1000),
+            'montant' => $this->faker->randomFloat(2, 100, 1000), 
             'libelle' => $this->faker->word(),
-            'paiement_id' =>  $this->faker->numberBetween(1, 10),
-            'type_paiement_id' =>$this->faker->numberBetween(1, 10),
-            'inscription_id' => $this->faker->numberBetween(1, 10),
-            'frais_ecole_id' => $this->faker->numberBetween(1, 10),
-            'statut_paiement' => $this->faker->randomElement([1, 2]),
-            'annee_id' => $this->faker->numberBetween(1, 10),
-            'caisse_id' => $this->faker->numberBetween(1, 10),
-            'comptable_id' => $this->faker->numberBetween(1, 10),
-            'caissier_id' => $this->faker->numberBetween(1, 10),
-            'date_paiement' => $this->faker->date(),
-            'date_encaissement' => $this->faker->date(),
-           
+            'paiement_id' => $this->faker->numberBetween(1, 5),  
+            'type_frais_id' => $this->faker->numberBetween(1, 3),  
+            'inscription_id' => $this->faker->numberBetween(1, 3),
+            
         ];
     }
 }

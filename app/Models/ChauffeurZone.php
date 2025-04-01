@@ -242,7 +242,7 @@ class ChauffeurZone extends Model
      */
 
     public static function getTotal(
-        $annee_id = null,
+       
         $type_permis = null,
         $annee_id = null
 

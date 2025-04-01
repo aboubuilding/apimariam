@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Depense;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +10,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class DepenseFactory extends Factory
 {
+    protected $model = Depense::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,15 +20,17 @@ class DepenseFactory extends Factory
     public function definition()
     {
         return [
-            //
-            'libelle' => $this->faker->word(),
+            'reference' => $this->faker->uuid(),
             'beneficaire' => $this->faker->name(),
-            'motif_depense' => $this->faker->sentence(),
+            'telephone_beneficiaire' => $this->faker->phoneNumber(),
+            'commentaire' => $this->faker->text(),
             'date_depense' => $this->faker->date(),
-            'montant' => $this->faker->randomNumber(4),
-            'annee_id' => $this->faker->numberBetween(1, 3),
-            'utilisateur_id' =>$this->faker->numberBetween(1, 10),
-            'statut_depense' => $this->faker->randomElement([1, 2]),
+            'annee_id' => $this->faker->numberBetween(1, 3),  
+            'utilisateur_id' => $this->faker->numberBetween(1, 5),  
+            'statut_depense' => $this->faker->randomElement([0, 1]), 
+            'fournisseur_id' => $this->faker->numberBetween(1, 5),  
+            'categorie_depense_id' => $this->faker->numberBetween(1, 3),  
+           
         ];
     }
 }

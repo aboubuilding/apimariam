@@ -26,7 +26,7 @@ class LivreFactory extends Factory
             'titre' => $this->faker->sentence(),
             'numero' => $this->faker->word(),
             'numero_isbn' => $this->faker->isbn13(),
-            'etat' => $this->faker->randomElement([1, 0]),
+            
 
         ];
     }

@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Caisse;
+use App\Models\Annee;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +12,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class CaisseFactory extends Factory
 {
+    protected $model = Caisse::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,21 +22,12 @@ class CaisseFactory extends Factory
     public function definition()
     {
         return [
-            //
-
-
             'libelle' => $this->faker->word(),
-            'solde_initial' => $this->faker->randomFloat(2, 1000, 100000),
-            'solde_final' => $this->faker->randomFloat(2, 1000, 100000),
-            'date_ouverture' => $this->faker->dateTimeBetween('-1 year', 'now'),
-            'date_cloture' => $this->faker->optional()->dateTimeBetween('now', '+1 year'),
-            'statut' => $this->faker->randomElement([0, 1]),
-
-            'Utilisateur_id'=> $this->faker->numberBetween(1, 10),
-            'annee_id'=> $this->faker->numberBetween(1, 3),
-
-            
-
+            'solde_initial' => $this->faker->randomFloat(2, 1000, 50000),
+            'statut' => $this->faker->numberBetween(0, 1),
+            'utilisateur_id' => $this->faker->numberBetween(1, 10),
+            'annee_id' => $this->faker->numberBetween(1, 10),
+            'etat' => 1
         ];
     }
 }

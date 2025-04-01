@@ -1,11 +1,11 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\Ligne;
+use App\Models\Validation;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class LigneSeeder extends Seeder
+class ValidationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class LigneSeeder extends Seeder
     public function run()
     {
         //
-        Ligne::factory()->count(5)->create();
+        Validation::factory()->count(20)->create();
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\FraisEcole;
+use App\Models\TransactionStock;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class FraisEcoleSeeder extends Seeder
+class TransactionStockSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class FraisEcoleSeeder extends Seeder
     public function run()
     {
         //
-        FraisEcole::factory()->count(3)->create();
+        TransactionStock::factory()->count(20)->create();
     }
 }

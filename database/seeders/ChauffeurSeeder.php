@@ -1,11 +1,11 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\Marque;
+use App\Models\Chauffeur;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class MarqueSeeder extends Seeder
+class ChauffeurSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,6 @@ class MarqueSeeder extends Seeder
     public function run()
     {
         //
-        Marque::factory()->count(7)->create();
-
+        Chauffeur::factory()->count(20)->create();
     }
 }
